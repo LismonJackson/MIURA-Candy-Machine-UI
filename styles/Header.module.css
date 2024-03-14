@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
+.container {
+  max-width: 1240px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding-left: 24px;
+  padding-right: 24px; */
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: -50px;
+
+}
+
+
+.navcontainer {
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+  
+}
+
+.logo {
+  margin-right: 60%;
+}
+
+.imagewithshadow {
+  filter: drop-shadow(0px 0px 5px #4E44CE) !important; 
+
+}
+
+.link {
+  margin-left: 18px;
+  margin-right: 18px;
+  color: #fff;
+  line-height: 20px;
+  text-decoration: none;
+  transition: color .35s;
+  font-size: 18px !important;
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+
+
+.link:hover {
+  color: #a0a3bd;
+  text-shadow: none;
+}
+
+.active {
+  margin-left: 24px;
+  margin-right: 24px;
+  color: #4E44CE;
+  background-color: #0F0823;
+  line-height: 30px;
+  text-decoration: none;
+  transition: color .35s;
+  font-size: 18px !important;
+  border-bottom: 2px solid #4E44CE;
+  font-weight: bold;
+
+}
+
+.buttonStyle {
+  background: linear-gradient(65deg, #0F0823, #0F0823) padding-box,
+    linear-gradient(65deg, #dca009, #6148ff) border-box !important;
+  border-radius: 80px !important;
+  border: 3px solid transparent !important;
+  color: #ffffff !important;
+  padding: 24px 40px !important;
+  transition: transform 0.3s ease-in-out !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 18px !important;
+}
+
+.buttonStyle:hover {
+  transform: scale(0.95);
+}
+
+.dropdown:hover {
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdownContent {
+  min-width: 160px;
+  background-color: #4E44CE;
+  border-radius: 24px;
+  padding:  10px 38px 40px;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, .4), inset 0 -76px 80px -44px rgba(255, 255, 255, .01), inset -1px -9px 48px rgba(255, 255, 255, .06);
+  position: absolute;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin: 0 !important;
+  margin-top: 32px !important;
+  z-index: 3;
+  animation-name: popIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  transform: scale(0);
+ 
+}
+.dropdown_text {
+  font-family: Odishi !important;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-200px) scale(0);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdownContent div {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  width: 100%;
+}
+
+.dropdownContent div h3 {
+  color: #ffffff;
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  /* font-family: sans-serif !important; */
+}
+
+.dropdownContent div a {
+  color: #bebdd4;
+  margin-bottom: 18px;
+  font-size: 18px;
+  /* font-family: sans-serif !important; */
+}
+
+.styledLink {
+  color: #ffffff !important;
+  border-bottom: 3px solid #fff;
+  margin-bottom: 0;
+  padding-bottom: 6px;
+  font-weight: 700;
+  transition: border-color .35s, color .35s;
+}
+
+/* Add these styles to your CSS file */
+.hamburgerButton {
+  display: none; /* Initially hide the button on larger screens */
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0px solid transparent;
+  background-color: transparent;
+  font-size: 24px;
+  color: #fff;
+  transform: scale(1.4);
+  z-index: 12 !important;
+}
+
+.mobileMenu {
+  display: none; /* Initially hide the mobile menu */
+  position: absolute;
+  top: 0px; /* Adjust the top position as needed */
+  right: 0px; /* Adjust the right position as needed */
+  background-color: #312c7c;
+  padding: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+}
+
+.mobileMenu a {
+  color: #ffffff;
+  margin-bottom: 50px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Show the button and mobile menu on smaller screens */
+@media screen and (max-width: 1146px) {
+  .hamburgerButton {
+    display: block;
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+  }
+}
+
+
+@media screen and (max-width: 1145px) {
+  .container {
+    flex-direction: column;
+  }
+  .navcontainer {
+    display: none;
+  }
+  .buttonStyle {
+    background: linear-gradient(65deg, #0F0823, #0F0823) padding-box,
+      linear-gradient(65deg, #dca009, #6148ff) border-box !important;
+    border-radius: 80px !important;
+    border: 3px solid transparent !important;
+    color: #ffffff !important;
+    padding: 12px 20px !important;
+    transition: transform 0.3s ease-in-out !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 18px !important;
+  }
+}

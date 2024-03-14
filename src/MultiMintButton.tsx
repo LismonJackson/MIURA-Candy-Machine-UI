@@ -353,7 +353,7 @@ export const MultiMintButton = ({
 
           {!isSoldOut && isActive && (
         <EstimatedCost>
-          Estimated costs: {costSolUI(totalSolCost)} SOL
+          Total estimated costs: {costSolUI(totalSolCost)} SOL
           {totalTokenCostsString}
         </EstimatedCost>
         )}

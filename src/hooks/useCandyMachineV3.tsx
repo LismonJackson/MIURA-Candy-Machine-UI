@@ -131,7 +131,7 @@ export default function useCandyMachineV3(
   }, [candyMachineId]);
 
   const refresh = React.useCallback(async () => {
-    if (!wallet.publicKey) throw new Error("Wallet not loaded yet!");
+    // if (!wallet.publicKey) throw new Error("Wallet not loaded yet!");
 
     setStatus((x) => ({ ...x, candyMachine: true }));
     await fetchCandyMachine()

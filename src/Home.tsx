@@ -8,6 +8,11 @@ import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import confetti from "canvas-confetti";
 import Link from "next/link";
 import Countdown from "react-countdown";
+import styles from "../styles/Header.module.css";
+import { useRouter } from "next/router";
+import React, { useRef } from "react";
+
+
 
 import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
@@ -41,6 +46,7 @@ import {
   ParsedPricesForUI,
 } from "./hooks/types";
 import { guardToLimitUtil } from "./hooks/utils";
+import Head from "next/head";
 
 const BorderLinearProgress = styled(LinearProgress)`
   height: 16px !important;
@@ -103,9 +109,10 @@ const Other = styled.div`
 const ImageWrap = styled.div`
   aspect-ratio: 1 / 1;
   width: 100%;
-  background-image: url(${ collectionImageURL });
+  background-image: url(${collectionImageURL});
   background-size: cover;
   border-radius: 16px;
+  border: 6px solid #4E44CE;
 `
 const Image = styled.div`
   height: 100%
@@ -139,8 +146,9 @@ const InfoBox = styled.div`
   align-items: flex-start;
   padding: 10px 16px;
   gap: 8px;
-  border: 2px solid #FFFFFF;
-  border-radius: 4px;
+  // border: 2px solid #FFFFFF;
+  border-radius: 20px;
+  background-color: var(--primary) !important;
   font-weight: 600;
   font-size: 20px;
   line-height: 100%;
@@ -343,6 +351,8 @@ const ConnectWallet = styled(WalletMultiButton)`
 export interface HomeProps {
   candyMachineId: PublicKey;
 }
+
+
 const candyMachinOps = {
   allowLists: [
     {
@@ -522,9 +532,9 @@ const Home = (props: HomeProps) => {
   );
 
   let candyPrice = null;
-   if (prices.payment.filter(({kind}) => kind === "token").reduce((a, { kind }) => a + kind, "")) {
+  if (prices.payment.filter(({ kind }) => kind === "token").reduce((a, { kind }) => a + kind, "")) {
     candyPrice = `${tokenCost} ${tokenType}`
-  } else if (prices.payment.filter(({kind}) => kind === "sol").reduce((a, { price }) => a + price, 0)) {
+  } else if (prices.payment.filter(({ kind }) => kind === "sol").reduce((a, { price }) => a + price, 0)) {
     candyPrice = `◎ ${solCost}`
   } else {
     candyPrice = "1 NFT"
@@ -578,12 +588,112 @@ const Home = (props: HomeProps) => {
     </svg>
   )
 
+  const router = useRouter();
+  const [isMoreDropdownOpen, setIsMoreDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  const toggleMoreDropdown = () => {
+    setIsMoreDropdownOpen(!isMoreDropdownOpen);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMoreDropdown = () => {
+    setIsMoreDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        closeMoreDropdown();
+      }
+    };
+
+    if (isMoreDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMoreDropdownOpen]);
 
   return (
     <main>
       <>
-        <Header>
+      <Head>
+        <title>Home - Pixel Ninja</title>
+      </Head>
+        <div className={styles.container}>
+          <button className={styles.hamburgerButton} onClick={toggleMobileMenu}>
+            ☰
+          </button>
+          {isMobileMenuOpen && (
+            <div className={styles.mobileMenu}>
+              <Link href={"/"} legacyBehavior>
+                <a>HOME</a>
+              </Link>
+
+              <Link href="https://placeholderpage.app/" legacyBehavior>
+                <a>ABOUT</a>
+              </Link>
+              <Link href="https://discord.gg/RZhhTYKT4h" legacyBehavior>
+                <a>DISCORD</a>
+              </Link>
+            </div>
+          )}
+          <Link
+            href={"/"}
+            legacyBehavior
+          >
+            <a>
+
+            </a>
+          </Link>
+          <div className={styles.navcontainer}>
+            <img
+              className={`${styles.logo} ${styles.imagewithshadow}`}
+              src="/images/logo.png"  // Updated side logo image link
+              alt="side logo"
+              width={100}
+              height={100}
+            />
+            <Link href={"/"} legacyBehavior>
+              <a className={router.pathname == "/" ? styles.active : styles.link}>
+                HOME
+              </a>
+            </Link>
+
+            <Link href="https://placeholderpage.app/" legacyBehavior>
+              <a className={router.pathname == "/About" ? styles.active : styles.link}>
+                ABOUT
+              </a>
+            </Link>
+            <div className={styles.dropdown}>
+              <a
+                className={`${styles.link} ${isMoreDropdownOpen ? styles.link : ""
+                  }`}
+                onClick={toggleMoreDropdown}
+              >
+                MORE
+              </a>
+              {isMoreDropdownOpen && (
+                <div className={styles.dropdownContent} ref={dropdownRef}>
+                  <div>
+                    <h3>SOCIAL</h3>
+                    <Link href="https://discord.gg/RZhhTYKT4h" legacyBehavior>
+                      <a>DISCORD</a>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
           <WalletContainer>
             <Wallet>
               {wallet ? (
@@ -596,7 +706,7 @@ const Home = (props: HomeProps) => {
               )}
             </Wallet>
           </WalletContainer>
-        </Header>
+        </div>
         <Section>
           <Container>
             <Column>
@@ -610,19 +720,20 @@ const Home = (props: HomeProps) => {
               <Content>
                 <CollectionName>{collectionTitle}</CollectionName>
                 <InfoRow>
-                {guardStates.isStarted && wallet.publicKey && (
-                  <InfoBox>
-                    <p>Total items</p>
-                    <p>{candyMachineV3.items.available}{" "}</p>
-                  </InfoBox>
-                )} {guardStates.isStarted && wallet.publicKey && (
-                  <InfoBox>
-                    <p>Price</p>
-                    <p>{candyPrice}</p>
-                  </InfoBox>
-                )}
+                  {guardStates.isStarted && wallet.publicKey && (
+                    <InfoBox>
+                      <p>Total items</p>
+                      <p>{candyMachineV3.items.available}{" "}</p>
+                    </InfoBox>
+                  )} {guardStates.isStarted && wallet.publicKey && (
+                    <InfoBox>
+                      {/* <p>Price</p> */}
+                      {/* <p>{candyPrice}</p> */}
+                      <p>Free mint</p>
+                    </InfoBox>
+                  )}
                   <IconRow>
-                    <a href={websiteURL} target="_blank" rel="noopener noreferrer"><Globe></Globe></a>
+                    {/* <a href={websiteURL} target="_blank" rel="noopener noreferrer"><Globe></Globe></a> */}
                     <a href={twitterURL} target="_blank" rel="noopener noreferrer"><Twitter></Twitter></a>
                     <a href={discordURL} target="_blank" rel="noopener noreferrer"><Discord></Discord></a>
                   </IconRow>
@@ -631,7 +742,7 @@ const Home = (props: HomeProps) => {
               </Content>
               <Other>
                 {!guardStates.isStarted ? (
-                  
+
                   <Countdown
                     date={guards.startTime}
                     renderer={renderGoLiveDateCounter}
@@ -645,8 +756,8 @@ const Home = (props: HomeProps) => {
                   //   <h1>You cannot pay for the mint</h1>
                 ) : !guardStates.isWalletWhitelisted ? (
                   <PrivateWrap>
-                  <PrivateText>Mint is private</PrivateText>
-                  <PrivateSubtext>You’re currently not allowed to mint. Try again at a later time.</PrivateSubtext>
+                    <PrivateText>Mint is private</PrivateText>
+                    <PrivateSubtext>You’re currently not allowed to mint. Try again at a later time.</PrivateSubtext>
                   </PrivateWrap>
                 ) : (
                   <>
@@ -680,29 +791,29 @@ const Home = (props: HomeProps) => {
                 )}
 
                 <ProgressbarWrap>
-                {guardStates.isStarted && wallet.publicKey && (
-                  <MintCount>
-                    Total minted {candyMachineV3.items.redeemed} /  
-                    {candyMachineV3.items.available}{" "}
-                    {(guards?.mintLimit?.mintCounter?.count ||
-                      guards?.mintLimit?.settings?.limit) && (
-                        <MintedByYou>
-                        <>
-                          ({guards?.mintLimit?.mintCounter?.count || "0"}
-                          {guards?.mintLimit?.settings?.limit && (
-                            <>/{guards?.mintLimit?.settings?.limit} </>
-                          )}
-                          by you)
-                        </>
-                        </MintedByYou>
-                      )}
-                  </MintCount>
-                )}
-                {guardStates.isStarted && wallet.publicKey && (
-                <div className="w-100">
-                <BorderLinearProgress variant="determinate" value={(candyMachineV3.items.redeemed * 100 / candyMachineV3.items.available)}></BorderLinearProgress>
-                </div>
-                )}
+                  {guardStates.isStarted && wallet.publicKey && (
+                    <MintCount>
+                      Total minted {candyMachineV3.items.redeemed} /
+                      {candyMachineV3.items.available}{" "}
+                      {(guards?.mintLimit?.mintCounter?.count ||
+                        guards?.mintLimit?.settings?.limit) && (
+                          <MintedByYou>
+                            <>
+                              ({guards?.mintLimit?.mintCounter?.count || "0"}
+                              {guards?.mintLimit?.settings?.limit && (
+                                <>/{guards?.mintLimit?.settings?.limit} </>
+                              )}
+                              by you)
+                            </>
+                          </MintedByYou>
+                        )}
+                    </MintCount>
+                  )}
+                  {guardStates.isStarted && wallet.publicKey && (
+                    <div className="w-100">
+                      <BorderLinearProgress variant="determinate" value={(candyMachineV3.items.redeemed * 100 / candyMachineV3.items.available)}></BorderLinearProgress>
+                    </div>
+                  )}
                 </ProgressbarWrap>
 
 
@@ -727,8 +838,9 @@ const Home = (props: HomeProps) => {
         >
           {alertState.message}
         </Alert>
-      </Snackbar> 
+      </Snackbar>
     </main>
+    
   );
 };
 
@@ -739,20 +851,20 @@ const renderGoLiveDateCounter = ({ days, hours, minutes, seconds }: any) => {
     <StartTimerWrap>
       <StartTimerSubtitle>Mint opens in:</StartTimerSubtitle>
       <StartTimer>
-      <StartTimerInner elevation={1}>
-        <span>{days}</span>Days
-      </StartTimerInner>
-      <StartTimerInner elevation={1}>
-        <span>{hours}</span>
-        Hours
-      </StartTimerInner>
-      <StartTimerInner elevation={1}>
-        <span>{minutes}</span>Mins
-      </StartTimerInner>
-      <StartTimerInner elevation={1}>
-        <span>{seconds}</span>Secs
-      </StartTimerInner>
-    </StartTimer>
+        <StartTimerInner elevation={1}>
+          <span>{days}</span>Days
+        </StartTimerInner>
+        <StartTimerInner elevation={1}>
+          <span>{hours}</span>
+          Hours
+        </StartTimerInner>
+        <StartTimerInner elevation={1}>
+          <span>{minutes}</span>Mins
+        </StartTimerInner>
+        <StartTimerInner elevation={1}>
+          <span>{seconds}</span>Secs
+        </StartTimerInner>
+      </StartTimer>
     </StartTimerWrap>
   );
 };

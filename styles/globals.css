@@ -20,7 +20,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--black);
   color: var(--white);
+  background-image: url('https://i.ibb.co/Csp6VP5/background.jpg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; /* Add this line to make the ::before pseudo-element relative to the body */
 }
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9); /* Adjust the alpha value to control darkness */
+  z-index: -1; /* Ensure the pseudo-element is behind the background image */
+}
+
+/* Rest of your CSS code */
+
 main {
   overflow: hidden;
 }
