@@ -8,21 +8,17 @@ import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import confetti from "canvas-confetti";
 import Link from "next/link";
 import Countdown from "react-countdown";
-
 import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { GatewayProvider } from "@civic/solana-gateway-react";
 import { defaultGuardGroup, network } from "./config";
-
 import { collectionImageURL } from "./config";
 import { collectionTitle } from "./config";
 import { collectionDescription } from "./config";
-
 import { tokenType } from "./config";
 import { websiteURL } from "./config";
 import { twitterURL } from "./config";
 import { discordURL } from "./config";
-
 import { MultiMintButton } from "./MultiMintButton";
 //import { MintButton } from "./MintButton";
 import {
@@ -30,6 +26,7 @@ import {
   Section,
   Container,
   Column,
+
 } from "./styles";
 import { AlertState } from "./utils";
 import NftsModal from "./NftsModal";
@@ -41,6 +38,9 @@ import {
   ParsedPricesForUI,
 } from "./hooks/types";
 import { guardToLimitUtil } from "./hooks/utils";
+
+
+
 
 const BorderLinearProgress = styled(LinearProgress)`
   height: 16px !important;
@@ -62,6 +62,19 @@ const Header = styled.div`
   width: 100%;
 
   @media only screen and (max-width: 450px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 16px;
+  }
+
+  @media only screen and (max-width: 290px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 6%;
     top: 16px;
   }
 `;
@@ -103,9 +116,13 @@ const Other = styled.div`
 const ImageWrap = styled.div`
   aspect-ratio: 1 / 1;
   width: 100%;
-  background-image: url(${ collectionImageURL });
+  background-image: url(${collectionImageURL});
   background-size: cover;
   border-radius: 16px;
+
+  border: 2px double rgba(255,255,255,0.5);
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.5); /* Golden premium drop shadow */
+  // border: 4px solid rgba(212, 175, 55, 0.5); /* Golden border */
 `
 const Image = styled.div`
   height: 100%
@@ -339,6 +356,9 @@ const ConnectWallet = styled(WalletMultiButton)`
     opacity: 0.9;
   }
 `
+
+
+
 
 export interface HomeProps {
   candyMachineId: PublicKey;
@@ -599,23 +619,13 @@ const Home = (props: HomeProps) => {
         </Header>
         <Section>
           <Container>
-            <Column>
-              <ImageWrap>
-                <Image>
-
-                </Image>
-              </ImageWrap>
-            </Column>
+            
             <Column>
               <Content>
                 <CollectionName>{collectionTitle}</CollectionName>
+                <CollectionDescription>{collectionDescription}</CollectionDescription>
                 <InfoRow>
-                {guardStates.isStarted && wallet.publicKey && (
-                  <InfoBox>
-                    <p>Total items</p>
-                    <p>{candyMachineV3.items.available}{" "}</p>
-                  </InfoBox>
-                )} {guardStates.isStarted && wallet.publicKey && (
+                 {guardStates.isStarted && wallet.publicKey && (
                   <InfoBox>
                     <p>Price</p>
                     <p>{candyPrice}</p>
@@ -627,7 +637,7 @@ const Home = (props: HomeProps) => {
                     <a href={discordURL} target="_blank" rel="noopener noreferrer"><Discord></Discord></a>
                   </IconRow>
                 </InfoRow>
-                <CollectionDescription>{collectionDescription}</CollectionDescription>
+                
               </Content>
               <Other>
                 {!guardStates.isStarted ? (
@@ -712,6 +722,13 @@ const Home = (props: HomeProps) => {
                   setMintedItems={setMintedItems}
                 />
               </Other>
+            </Column>
+            <Column>
+              <ImageWrap>
+                <Image>
+
+                </Image>
+              </ImageWrap>
             </Column>
           </Container>
         </Section>

@@ -1,10 +1,12 @@
+
 /* Need to change colors? Do it here, these are the main colors that are used all over the website */
 :root {
-  --main-background-color: #0E0E0E;
+  --main-background-color: #000000;
   --alt-background-color: #202020;
   --white: #fff;
   --black: #000;
-  --primary: #4E44CE;
+  --gray: #373737;
+  --primary: #666666;
   --error: #D92D20;
 }
 
@@ -12,13 +14,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 body {
-  background-color: var(--main-background-color);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  /* background-color: var(--main-background-color); */
+  /* Old font: */
+  /* font-family: 'Plus Jakarta Sans', sans-serif; */
+  font-family: 'Times New Roman', serif; /* Times New Roman font */
+
   font-size: 1rem;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--black);
+  background-color: var(--main-background-color);
   color: var(--white);
 }
 main {
@@ -32,19 +37,22 @@ h1, h2, h3, h4, h5, h6, p {
   width: 100%;
 }
 
+
+/* Wallet balance container */
+
 /* Modal that opens when the 'Connect Wallet' button is clicked styling */
 .wallet-adapter-modal-wrapper {
   background-color: var(--alt-background-color) !important;
+
 }
 .wallet-adapter-button {
-  color: var(--black) !important;
-  background-color: var(--white) !important;
+  color: var(--white) !important;
+  background-color: var(--gray) !important;
   transition: 0.2s !important;
 }
 .wallet-adapter-button:hover {
-  background-color: var(--white) !important;
   opacity: 0.9 !important;
-  color: var(--black) !important;
+  color: #64645c !important;
 }
 .wallet-adapter-modal-list {
   margin: 0 0 4px !important;
@@ -54,4 +62,53 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .wallet-adapter-modal-title {
   color: var(----white) !important;
+}
+
+
+.hello {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  padding: 12px 24px;
+  border: 2px solid #FFD700; /* Adding a gold border for emphasis */
+  border-radius: 6px; /* Keeping the border-radius as per your request */
+  color: #FFD700; /* Gold-colored text */
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: linear-gradient(45deg, #FFD700, #F8C202, #ffee8d, #F8C202, #FFD700);
+  background-size: 200% 200%;
+  animation: goldAnimation 3s linear infinite;
+  transition: transform 300ms ease;
+
+  @keyframes goldAnimation {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0 100%;
+    }
+  }
+
+  &:hover {
+    background: linear-gradient(45deg, #FFD700, #C5A500);
+    transform: scale(1.05); /* Slightly enlarging the button on hover for emphasis */
+    color: #0E1020; /* Changing text color on hover for contrast */
+    box-shadow: 0 0 20px #FFD700; /* Adding a glowing effect on hover */
+  }
+
+  &:active {
+    transform: scale(1); /* Returning to normal size when clicked */
+    box-shadow: 0 0 15px #C5A500; /* Slightly dimming the glow on click */
+    
+  }
+
 }

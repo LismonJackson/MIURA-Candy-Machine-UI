@@ -47,47 +47,113 @@ const PlusIcon = (props) => (
   </svg>
 )
 
+
+
+
 export const CTAButton = styled.button`
+  position: relative;
   width: 100%;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  color: var(--white);
-  cursor: pointer;
-  border: none;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 150%;
-  text-transform: uppercase;
-  background: none;
-`;
-export const ButtonWrap = styled.div`
-  padding: 16px 24px;
-  background-color: var(--primary);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  color: var(--white);
-  border: none;
+  padding: 12px 24px;
+  margin-right: 6px;
+  border-top: 2px double white;
+  border-left: 2px double white;
+  border-right: 2px double white;
+  border-radius: 6px 6px 0px 0px;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 150%;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.5;
   text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  background: linear-gradient(270deg, #007cf0, #00dfd8, #ff0080, #007cf0);
+  background-size: 800% 800%;
+  animation: AnimationGradient 15s ease infinite;
+  transition: background-color 50ms ease, transform 300ms ease, border-color 300ms ease;
+  
+
+
+  /* Constantly changing gradient background */
+  @keyframes AnimationGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Border color animation */
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    z-index: -1;
+    animation: BorderAnimation 100ms ease infinite;
+  }
+
+  @keyframes BorderAnimation {
+    0% { border-color: #007cf0; }
+    25% { border-color: #00dfd8; }
+    50% { border-color: #ff0080; }
+    75% { border-color: #007cf0; }
+    100% { border-color: #007cf0; }
+  }
+
+  /* Hover state */
+  &:hover {
+    background-color: #ff4081;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Active state */
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+`;
+
+
+
+
+
+
+export const ButtonWrap = styled.div`
+  // padding: 0px 0px;
+  // background-color: var(--primary);
+  // border-radius: 4px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // align-items: center;
+  // color: var(--white);
+  // border: none;
+  // font-style: normal;
+  // font-weight: 600;
+  // font-size: 20px;
+  // line-height: 150%;
+  // text-transform: uppercase;
+  // background: none; 
 `
 export const NumberWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
-  padding: 16px;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 1);
   border-radius: 6px;  
+  background: #373737;
+
 `
 
 export const NumbericIcon = styled.button`
@@ -108,7 +174,10 @@ export const NumberInput = styled.div`
   padding: 16px;
   gap: 20px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
+  border-radius: 0px 0px 6px 6px;
+  border-right: 2px double white;
+  border-left: 2px double white;
+  border-bottom: 2px double white;
 `
 export const NumericField = styled.input`
   font-size: 20px !important;
@@ -353,7 +422,7 @@ export const MultiMintButton = ({
 
           {!isSoldOut && isActive && (
         <EstimatedCost>
-          Estimated costs: {costSolUI(totalSolCost)} SOL
+          * Estimated minting costs: {costSolUI(totalSolCost)} SOL
           {totalTokenCostsString}
         </EstimatedCost>
         )}

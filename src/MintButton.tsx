@@ -19,7 +19,7 @@ export const CTAButton = styled(Button)`
   display: block !important;
   margin: 0 auto !important;
   background-color: var(--title-text-color) !important;
-  min-width: 120px !important;
+  min-width: 100px !important;
   font-size: 1em !important;
 `;
 
