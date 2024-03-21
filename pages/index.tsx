@@ -1,5 +1,8 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
+// src/index.tsx or src/App.tsx
+
+
 const DynamicMain = dynamic(() => import('../src/main'), {
   suspense: true,
   ssr: false
