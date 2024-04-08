@@ -6,7 +6,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import Link from 'next/link';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from './firebase'; // Adjust the path as needed
-
+import Head from "next/head";
 
 const Wrapper = styled.div`
   font-family: Arial, sans-serif;
@@ -656,6 +656,10 @@ const AboutComponent = () => {
   
   return (
     <Wrapper>
+      <Head>
+        <title>Miura Protocol - Coming Soon</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header>
         <h1>Miura<BetaTag>Beta</BetaTag></h1>
         <Link href="/dapp">
