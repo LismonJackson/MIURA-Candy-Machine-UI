@@ -3,7 +3,9 @@ import styled from "styled-components";
 import ParticleCanvas from "./ParticleAnimation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-
+import Link from 'next/link';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from './firebase'; // Adjust the path as needed
 
 
 const Wrapper = styled.div`
@@ -181,6 +183,7 @@ const NewsSection = styled.section`
   padding-top: 40px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   background: #09090B;
@@ -212,6 +215,44 @@ const NewsSection = styled.section`
     flex-wrap: no-wrap;
   }
 `;
+
+const Row = styled.div`
+  padding-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background: #09090B;
+  margin-bottom: 50px;
+
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    flex-wrap: wrap;
+  }
+
+    @media (min-width: 576px) {
+    /* Small devices (phones) */
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    flex-wrap: no-wrap;
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    flex-wrap: no-wrap;
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    flex-wrap: no-wrap;
+}
+  
+`
 
 const Column = styled.div`
   width: 380px; /* Set a fixed width for each column */
@@ -246,6 +287,9 @@ const Column = styled.div`
     width: 300px;
   }
 `;
+
+
+
 
 const Image = styled.img`
   width: 100%;
@@ -295,20 +339,65 @@ const FaqsSection = styled.section`
 
 `
 
+
+
 const NewsletterForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  background: #151518;
+  padding: 8px;
+  border: 1px solid #27272A;
+  border-radius: 6px;
+
+  @media (max-width: 400px) {
+    /* Small devices (phones) */
+        flex-direction: column;
+        width: 80%;
+        padding: 10px;
+  }
+
 `;
 
 const EmailInput = styled.input`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-right: 10px;
+
+  &:focus {
+    outline: none; 
+  }
+
+  @media (max-width: 400px) {
+    /* Small devices (phones) */
+        
+        width: 90%;
+        margin-bottom: 10px;
+        
+  }
+
 `;
 
+
+const SubscribeButton = styled.button`
+  padding: 12px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 12px;
+
+  @media (max-width: 400px) {
+    /* Small devices (phones) */
+        background-color: #27272A;
+        color: #fff;
+        width: 98%;
+        
+  }
+
+`;
 
 
 const NavButton = styled.button`
@@ -324,29 +413,35 @@ const NavButton = styled.button`
   &:hover {
     background-color: lightgray;
   }
+  @media (max-width: 400px) {
+    /* Small devices (phones) */
+      padding: 10px 10px;
+        
+  }
 `;
 
 const HeroButton = styled.button`
+  display: inline-block;
   margin-top: 30px;
   padding: 10px 20px;
   background-color: #fffff;
+  border: 1px solid transparent; 
   color: black;
   border-radius: 4px;
   font-weight: bold;
   font-size: 1em;
   cursor: pointer;
-  // box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5); /* Drop shadow */
   transition: all 200ms ease-in-out;
-  
+  box-shadow: 0 0px 0px rgba(255, 255, 255, 0); 
 
   &:hover {
     background-color: gray;
-    border: 2px double white; 
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 1); /* Drop shadow */
+    border-color: white; 
+    box-shadow: 0 0px 4px rgba(255, 255, 255, 1); 
     color: white;
-
   }
 `;
+
 
 const LearnMoreButton = styled.button`
     padding: 10px 20px;
@@ -448,15 +543,73 @@ const Accordion = ({ title, content }) => {
   );
 };
 
+const NewsLetterSection = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding-top: 40px;
+  width: 100%;
+  background: #09090B;
+  border: 1px solid #151518;
 
-const SubscribeButton = styled.button`
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  
+
+`
+
+
+const NewsLetterBox = styled.div`
+
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+flex-direction: column;
+padding-bottom: 40px;
+width: 100%;
+background: #09090B;
+
+@media (min-width: 280px) {
+  /* Extra Small devices (phones) */
+  max-width: 80%;
+}
+
+  @media (min-width: 576px) {
+  /* Small devices (phones) */
+
+  max-width: 80%;
+}
+
+@media (min-width: 768px) {
+  /* Medium devices (tablets) */
+  max-width: 80%;
+}
+
+@media (min-width: 992px) {
+  /* Large devices (desktops) */
+  max-width: 70%;
+}
+
+@media (min-width: 1200px) {
+  /* Extra large devices (large desktops) */
+  max-width: 50%;
+}
+
+`
+
+const Alert = styled.p`
+  background: #09090B;
   padding: 10px 20px;
-  background-color: #000;
   color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
+  transition: all 0.5s ease-in-out;
+
+`
+
 
 const Footer = styled.footer`
   background-color: #09090B;
@@ -466,20 +619,48 @@ const Footer = styled.footer`
 `;
 
 const AboutComponent = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email") as string;
 
-    // Submit email to Firebase or your preferred backend for newsletter subscription
-    console.log("Email submitted:", email);
+  const [input, setInput] = useState("");
+  const [message, setMessage] = useState("");
+  const inputHandler = (e) => {
+    setInput(e.target.value);
+  }
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (input) {
+      // console.log(input);
+      try {
+        await addDoc(collection(db, 'emails'), {
+          email: input,
+          time: serverTimestamp()
+        });
+        // console.log('Document successfully written!');
+        setInput("");
+        setMessage("Thank you for subscribing to our newsletter!")
+        setTimeout(()=>{
+          setMessage("");
+        }, 3000)
+      } catch (error) {
+        console.error('Error adding entry: ', error);
+        setInput("");
+        setMessage("Submission Failed!")
+        setTimeout(()=>{
+          setMessage("");
+        }, 3000)
+
+      }
+    }
   };
 
+  
   return (
     <Wrapper>
       <Header>
         <h1>Miura<BetaTag>Beta</BetaTag></h1>
+        <Link href="/dapp">
         <NavButton>Launch Dapp</NavButton>
+        </Link>
       </Header>
 
       <Main>
@@ -491,7 +672,7 @@ const AboutComponent = () => {
                             src="https://nftstorage.link/ipfs/bafybeibnie63fmcgor2gptiowailq5sgbv6hkmwxeahfhhy4evadbhlhji/0.jpg"
                             alt="Team Image"
                         /> */}
-            <ParticleCanvas backgroundColor="#212121" animate={true} />
+            <ParticleCanvas backgroundColor="#09090B" animate={true} />
             <Overlay />
           </div>
           <HeroText>
@@ -507,45 +688,57 @@ const AboutComponent = () => {
               provide seamless, secure, and decentralized financial solutions
               for everyone.
             </p>
-            <HeroButton>Learn More</HeroButton>
+            <Link href="/dapp">
+            <HeroButton>Claim Now!</HeroButton>
+            </Link>
           </HeroText>
         </HeroSection>
-        <NewsSection>
 
-          <Column>
-            <Image src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/6.png" alt="Image 1" />
-            <Text>
-              <Heading>Miura Airdrop</Heading>
-              <Paragraph>
-                AIRDROP of the first and only lending and borrowing protocol
-              </Paragraph>
-              <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
-            </Text>
-          </Column>
+        <NewsSection id="eventSection">
 
-          <Column>
-            <Image src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/3.gif" alt="Image 2" />
-            <Text>
-              <Heading>Miura NFT</Heading>
-              <Paragraph>
-                Smart NFT for smart community
-              </Paragraph>
-              <LearnMoreButton color="#fff" fontColor="#000">Claim Now</LearnMoreButton>
-            </Text>
-          </Column>
+          <h2>Upcoming Events</h2>
+          <Row>
+            <Column>
+              <Image src="https://bafkreihnvhki3qi7yreh5zhwn5cwuf4xqgc2qq7cegsgjedblp24inyq24.ipfs.nftstorage.link/" alt="Image 1" />
+              <Text>
+                <Heading>Miura Airdrop</Heading>
+                <Paragraph>
+                  AIRDROP of the first and only lending and borrowing protocol
+                </Paragraph>
+                
+                <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
+              </Text>
+            </Column>
 
-          <Column>
-            <Image src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/8.png" alt="Image 3" />
-            <Text>
-              <Heading>Discord Server</Heading>
-              <Paragraph>
-                Official Discord server launch
-              </Paragraph>
-              <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
-            </Text>
-          </Column>
+            <Column>
+              <Image src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/3.gif" alt="Image 2" />
+              <Text>
+                <Heading>Miura NFT</Heading>
+                <Paragraph>
+                  Smart NFT for smart community
+                </Paragraph>
+                <Link href="/dapp">
+                <LearnMoreButton color="#fff" fontColor="#000">Minting Live Now!</LearnMoreButton>
+                </Link>
+              </Text>
+            </Column>
+
+            <Column>
+              <Image src="https://bafkreihnvhki3qi7yreh5zhwn5cwuf4xqgc2qq7cegsgjedblp24inyq24.ipfs.nftstorage.link/" alt="Image 3" />
+              <Text>
+                <Heading>Discord Server</Heading>
+                <Paragraph>
+                  Official Discord server launch
+                </Paragraph>
+                
+                <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
+                
+              </Text>
+            </Column>
+          </Row>
         </NewsSection>
         <FaqsSection>
+
           <h2>FAQs</h2>
           <AccordionWrapper>
             <Accordion
@@ -568,34 +761,30 @@ const AboutComponent = () => {
 
         </FaqsSection>
 
-        {/* <Section>
-                    <Heading>Meet the Team</Heading>
-                    <Paragraph>
-                        Our team comprises dedicated professionals with extensive
-                        experience in blockchain technology, finance, and software
-                        development. Together, we are committed to realizing the full
-                        potential of decentralized finance.
-                    </Paragraph>
-                </Section> */}
 
-        {/* <Section>
-                    <Heading>Newsletter</Heading>
-                    <Paragraph>
-                        Stay updated with our latest news and developments by subscribing
-                        to our newsletter.
-                    </Paragraph>
-                    <NewsletterForm onSubmit={handleSubmit}>
-                        <EmailInput
-                            type="email"
-                            name="email"
-                            placeholder="Your email"
-                            required
-                        />
-                        <SubscribeButton type="submit">Subscribe</SubscribeButton>
-                    </NewsletterForm>
-                </Section> */}
+        <NewsLetterSection>
+          <NewsLetterBox>
+          <Heading>Newsletter</Heading>
+          <p>
+            Stay updated with our latest news and developments by subscribing
+            to our newsletter.
+          </p>
+          <NewsletterForm onSubmit={submitHandler}>
+            <EmailInput
+              type="email"
+              onChange={inputHandler}
+              name="email"
+              placeholder="Your email"
+              value={input}
+              required
+            />
+            <SubscribeButton type="submit">Subscribe</SubscribeButton>
+          </NewsletterForm>
+            <Alert>{message}</Alert>
+          </NewsLetterBox>
+        </NewsLetterSection>
       </Main>
-
+      
       <Footer>&copy; 2024 Miura. All rights reserved.</Footer>
     </Wrapper>
   );

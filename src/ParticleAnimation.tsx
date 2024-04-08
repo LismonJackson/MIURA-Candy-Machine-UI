@@ -6,6 +6,10 @@ const StyledCanvas = styled.canvas`
   width: 100vw; /* Set width to 100% of viewport width */
   height: 100vh; /* Set height to 100% of viewport height */
   background-color: ${(props) => props.backgroundColor};
+  // background: linear-gradient(to right, #cc3300, #00ccff);
+  background: #010101;
+
+
 `;
 
 const ParticleCanvas: React.FC<{ backgroundColor: string; animate: boolean }> = ({ backgroundColor, animate }) => {
@@ -45,7 +49,10 @@ const ParticleCanvas: React.FC<{ backgroundColor: string; animate: boolean }> = 
     };
 
     const draw = () => {
+
+
       if (!animate) return; // Stop animation if not enabled
+      connectionsRef.current.clear();
       const particles = particlesRef.current;
       const connections = connectionsRef.current;
 
@@ -97,7 +104,7 @@ const ParticleCanvas: React.FC<{ backgroundColor: string; animate: boolean }> = 
               ctx.lineTo(p2.x, p2.y);
               ctx.lineTo(p3.x, p3.y);
               ctx.closePath();
-              ctx.fillStyle = `rgba(0, 0, 0, ${1 - distance / 100})`; // Light golden color with low opacity
+              ctx.fillStyle = `rgba(22, 22, 28, ${1 - distance / 100})`; // Light golden color with low opacity
               ctx.fill();
             }
           }

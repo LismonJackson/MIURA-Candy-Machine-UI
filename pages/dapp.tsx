@@ -1,8 +1,6 @@
-// pages/about.tsx
-import React, { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
 import styled from "styled-components";
-
 
 const LoadingScreen = styled.div`
   width: 100%;
@@ -20,6 +18,8 @@ const LoadingScreen = styled.div`
 
 `;
 
+
+
 // Custom loading component
 const CustomLoading = () => (
   <LoadingScreen>
@@ -29,17 +29,19 @@ const CustomLoading = () => (
   </LoadingScreen>
 );
 
-const DynamicAbout = dynamic(() => import('../src/AboutPage'), {
+// Dynamically import DappPage component
+const DynamicMain = dynamic(() => import('../src/DappPage'), {
   suspense: true,
-  ssr: false,
+  ssr: false
 });
 
-const AboutPage = () => {
+// DappPage component
+const DappPage = () => {
   return (
     <Suspense fallback={<CustomLoading />}>
-      <DynamicAbout />
+      <DynamicMain />
     </Suspense>
   );
 };
 
-export default AboutPage;
+export default DappPage;

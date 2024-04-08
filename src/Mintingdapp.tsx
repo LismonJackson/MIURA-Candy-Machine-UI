@@ -38,6 +38,8 @@ import {
   ParsedPricesForUI,
 } from "./hooks/types";
 import { guardToLimitUtil } from "./hooks/utils";
+import ParticleCanvas from "./ParticleAnimation";
+
 
 
 
@@ -371,7 +373,7 @@ const candyMachinOps = {
     },
   ],
 };
-const Home = (props: HomeProps) => {
+const Mintindapp = (props: HomeProps) => {
   const { connection } = useConnection();
   const wallet = useWallet();
   const candyMachineV3 = useCandyMachineV3(
@@ -547,7 +549,7 @@ const Home = (props: HomeProps) => {
   } else if (prices.payment.filter(({kind}) => kind === "sol").reduce((a, { price }) => a + price, 0)) {
     candyPrice = `◎ ${solCost}`
   } else {
-    candyPrice = "1 NFT"
+    candyPrice = "Loading.."
   }
 
   console.log(candyPrice);
@@ -603,6 +605,7 @@ const Home = (props: HomeProps) => {
   return (
     <main>
       <>
+      
         <Header>
           <WalletContainer>
             <Wallet>
@@ -617,11 +620,14 @@ const Home = (props: HomeProps) => {
             </Wallet>
           </WalletContainer>
         </Header>
+        
         <Section>
+        
           <Container>
             
             <Column>
               <Content>
+                
                 <CollectionName>{collectionTitle}</CollectionName>
                 <CollectionDescription>{collectionDescription}</CollectionDescription>
                 <InfoRow>
@@ -632,9 +638,10 @@ const Home = (props: HomeProps) => {
                   </InfoBox>
                 )}
                   <IconRow>
-                    <a href={websiteURL} target="_blank" rel="noopener noreferrer"><Globe></Globe></a>
-                    <a href={twitterURL} target="_blank" rel="noopener noreferrer"><Twitter></Twitter></a>
                     <a href={discordURL} target="_blank" rel="noopener noreferrer"><Discord></Discord></a>
+                    {/* <a href={websiteURL} target="_blank" rel="noopener noreferrer"><Globe></Globe></a> */}
+                    <a href={twitterURL} target="_blank" rel="noopener noreferrer"><Twitter></Twitter></a>
+                    
                   </IconRow>
                 </InfoRow>
                 
@@ -749,7 +756,7 @@ const Home = (props: HomeProps) => {
   );
 };
 
-export default Home;
+export default Mintindapp;
 
 const renderGoLiveDateCounter = ({ days, hours, minutes, seconds }: any) => {
   return (

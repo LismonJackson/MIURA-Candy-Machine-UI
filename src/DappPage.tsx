@@ -17,7 +17,7 @@ import {
 
 import { useMemo } from "react";
 
-import Home from "./Home";
+import Mintingdapp from "./Mintingdapp";
 import { rpcHost, candyMachineId, network } from "./config";
 
 const theme = createTheme({
@@ -45,7 +45,7 @@ const theme = createTheme({
   },
 });
 
-const Main = ({}) => {
+const DappComponent = ({}) => {
   // Custom RPC endpoint.
   const endpoint = useMemo(() => rpcHost, []);
 
@@ -71,7 +71,7 @@ const Main = ({}) => {
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect={true}>
           <WalletModalProvider>
-            <Home candyMachineId={candyMachineId} />
+            <Mintingdapp candyMachineId={candyMachineId} />
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>
@@ -79,4 +79,4 @@ const Main = ({}) => {
   );
 };
 
-export default Main;
+export default DappComponent;

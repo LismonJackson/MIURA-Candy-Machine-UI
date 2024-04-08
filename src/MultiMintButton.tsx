@@ -72,7 +72,7 @@ export const CTAButton = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   overflow: hidden;
-  background: linear-gradient(270deg, #007cf0, #00dfd8, #ff0080, #007cf0);
+  background: linear-gradient(270deg, #5078A0, #50A0A8, #A05080, #5078A0);
   background-size: 800% 800%;
   animation: AnimationGradient 15s ease infinite;
   transition: background-color 50ms ease, transform 300ms ease, border-color 300ms ease;
@@ -222,6 +222,13 @@ export const EstimatedCost = styled.p`
     font-size: 12px;
   }
 `
+
+export const Messages = styled.p`
+  margin-top: 15px;
+`
+
+
+
 function usePrevious<T>(value: T): T | undefined {
   const ref = useRef<T>();
   useEffect(() => {
@@ -456,7 +463,7 @@ export const MultiMintButton = ({
         
       </div>
       {guardStates.messages?.map((m, i) => (
-        <p key={i}>{m}</p>
+        <Messages key={i}>{m}</Messages>
       ))}
     </div>
   );
