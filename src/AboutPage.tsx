@@ -638,14 +638,14 @@ const AboutComponent = () => {
         // console.log('Document successfully written!');
         setInput("");
         setMessage("Thank you for subscribing to our newsletter!")
-        setTimeout(()=>{
+        setTimeout(() => {
           setMessage("");
         }, 3000)
       } catch (error) {
         console.error('Error adding entry: ', error);
         setInput("");
         setMessage("Submission Failed!")
-        setTimeout(()=>{
+        setTimeout(() => {
           setMessage("");
         }, 3000)
 
@@ -653,144 +653,143 @@ const AboutComponent = () => {
     }
   };
 
-  
+
   return (
-    <Wrapper>
-      <Head>
-        <title>Miura Protocol - Coming Soon</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header>
-        <h1>Miura<BetaTag>Beta</BetaTag></h1>
-        <Link href="/dapp">
-        <NavButton>Launch Dapp</NavButton>
-        </Link>
-      </Header>
+    <>
 
-      <Main>
-        <HeroSection>
+      <Wrapper>
+        <Header>
+          <h1>Miura<BetaTag>Beta</BetaTag></h1>
+          <Link href="/dapp">
+            <NavButton>Launch Dapp</NavButton>
+          </Link>
+        </Header>
 
-          <div>
-            {/* Image can also be used instead of Particle Animation */}
-            {/* <HeroImage
+        <Main>
+          <HeroSection>
+
+            <div>
+              {/* Image can also be used instead of Particle Animation */}
+              {/* <HeroImage
                             src="https://nftstorage.link/ipfs/bafybeibnie63fmcgor2gptiowailq5sgbv6hkmwxeahfhhy4evadbhlhji/0.jpg"
                             alt="Team Image"
                         /> */}
-            <ParticleCanvas backgroundColor="#09090B" animate={true} />
-            <Overlay />
-          </div>
-          <HeroText>
+              <ParticleCanvas backgroundColor="#09090B" animate={true} />
+              <Overlay />
+            </div>
+            <HeroText>
 
-            <LogoImage
-              src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/10.png"
-              alt="Team Image"
-            />
-            <h2>Miura Protocol</h2>
-            <p>
-              Miura is a cutting-edge platform built on Solana blockchain,
-              revolutionizing the way you experience DeFi. Our mission is to
-              provide seamless, secure, and decentralized financial solutions
-              for everyone.
-            </p>
-            <Link href="/dapp">
-            <HeroButton>Claim Now!</HeroButton>
-            </Link>
-          </HeroText>
-        </HeroSection>
+              <LogoImage
+                src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/10.png"
+                alt="Team Image"
+              />
+              <h2>Miura Protocol</h2>
+              <p>
+                Miura is a cutting-edge platform built on Solana blockchain,
+                revolutionizing the way you experience DeFi. Our mission is to
+                provide seamless, secure, and decentralized financial solutions
+                for everyone.
+              </p>
+              <Link href="/dapp">
+                <HeroButton>Claim Now!</HeroButton>
+              </Link>
+            </HeroText>
+          </HeroSection>
 
-        <NewsSection id="eventSection">
+          <NewsSection id="eventSection">
 
-          <h2>Upcoming Events</h2>
-          <Row>
-            <Column>
-              <Image src="https://bafkreihnvhki3qi7yreh5zhwn5cwuf4xqgc2qq7cegsgjedblp24inyq24.ipfs.nftstorage.link/" alt="Image 1" />
-              <Text>
-                <Heading>Miura Airdrop</Heading>
-                <Paragraph>
-                  AIRDROP of the first and only lending and borrowing protocol
-                </Paragraph>
-                
-                <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
-              </Text>
-            </Column>
+            <h2>Upcoming Events</h2>
+            <Row>
+              <Column>
+                <Image src="https://bafkreihnvhki3qi7yreh5zhwn5cwuf4xqgc2qq7cegsgjedblp24inyq24.ipfs.nftstorage.link/" alt="Image 1" />
+                <Text>
+                  <Heading>Miura Airdrop</Heading>
+                  <Paragraph>
+                    AIRDROP of the first and only lending and borrowing protocol
+                  </Paragraph>
 
-            <Column>
-              <Image src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/3.gif" alt="Image 2" />
-              <Text>
-                <Heading>Miura NFT</Heading>
-                <Paragraph>
-                  Smart NFT for smart community
-                </Paragraph>
-                <Link href="/dapp">
-                <LearnMoreButton color="#fff" fontColor="#000">Minting Live Now!</LearnMoreButton>
-                </Link>
-              </Text>
-            </Column>
+                  <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
+                </Text>
+              </Column>
 
-            <Column>
-              <Image src="https://bafkreihnvhki3qi7yreh5zhwn5cwuf4xqgc2qq7cegsgjedblp24inyq24.ipfs.nftstorage.link/" alt="Image 3" />
-              <Text>
-                <Heading>Discord Server</Heading>
-                <Paragraph>
-                  Official Discord server launch
-                </Paragraph>
-                
-                <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
-                
-              </Text>
-            </Column>
-          </Row>
-        </NewsSection>
-        <FaqsSection>
+              <Column>
+                <Image src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/3.gif" alt="Image 2" />
+                <Text>
+                  <Heading>Miura NFT</Heading>
+                  <Paragraph>
+                    Smart NFT for smart community
+                  </Paragraph>
+                  <Link href="/dapp">
+                    <LearnMoreButton color="#fff" fontColor="#000">Minting Live Now!</LearnMoreButton>
+                  </Link>
+                </Text>
+              </Column>
 
-          <h2>FAQs</h2>
-          <AccordionWrapper>
-            <Accordion
-              title="What is the significance of purchasing this NFT?"
-              content="Purchasing this NFT holds significance as it grants participation in the AIRDROP event linked to the pioneering lending and borrowing protocol designed specifically for NFT assets. This implies that by acquiring this NFT, you become eligible for benefits and rewards within the framework of this unique financial ecosystem."
-            />
-            <Accordion
-              title="What benefit do NFT owners receive?"
-              content="NFT owners stand to gain a distinct advantage as they receive a portion of the interest accrued from loans taken against NFT assets. This means that by being a holder of this NFT, you become entitled to a share of the interest earnings generated from funds borrowed by others against their NFT holdings."
-            />
-            <Accordion
-              title="How can MIURA NFT be utilized on the platform?"
-              content="MIURA NFT serves as a versatile asset within the platform's ecosystem, primarily functioning as collateral for borrowing funds. This means that holders of MIURA NFTs can leverage their ownership to obtain loans, utilizing their NFTs as security against the borrowed funds, thereby unlocking liquidity without having to sell their NFT holdings."
-            />
-            <Accordion
-              title="How can this NFT be used for non-payment of interest?"
-              content="This NFT offers a unique utility wherein it can be utilized to offset interest payments under specific circumstances. If you choose to pledge your NFT as collateral and borrow funds against another NFT asset, you have the option to use this NFT to waive the interest payments on the borrowed funds. This feature provides flexibility and additional value to the ownership of this NFT, allowing strategic financial management within the platform's ecosystem."
-            />
-          </AccordionWrapper>
+              <Column>
+                <Image src="https://bafkreihnvhki3qi7yreh5zhwn5cwuf4xqgc2qq7cegsgjedblp24inyq24.ipfs.nftstorage.link/" alt="Image 3" />
+                <Text>
+                  <Heading>Discord Server</Heading>
+                  <Paragraph>
+                    Official Discord server launch
+                  </Paragraph>
 
-        </FaqsSection>
+                  <LearnMoreButton color="#27272A" fontColor="#fff">Coming Soon!</LearnMoreButton>
+
+                </Text>
+              </Column>
+            </Row>
+          </NewsSection>
+          <FaqsSection>
+
+            <h2>FAQs</h2>
+            <AccordionWrapper>
+              <Accordion
+                title="What is the significance of purchasing this NFT?"
+                content="Purchasing this NFT holds significance as it grants participation in the AIRDROP event linked to the pioneering lending and borrowing protocol designed specifically for NFT assets. This implies that by acquiring this NFT, you become eligible for benefits and rewards within the framework of this unique financial ecosystem."
+              />
+              <Accordion
+                title="What benefit do NFT owners receive?"
+                content="NFT owners stand to gain a distinct advantage as they receive a portion of the interest accrued from loans taken against NFT assets. This means that by being a holder of this NFT, you become entitled to a share of the interest earnings generated from funds borrowed by others against their NFT holdings."
+              />
+              <Accordion
+                title="How can MIURA NFT be utilized on the platform?"
+                content="MIURA NFT serves as a versatile asset within the platform's ecosystem, primarily functioning as collateral for borrowing funds. This means that holders of MIURA NFTs can leverage their ownership to obtain loans, utilizing their NFTs as security against the borrowed funds, thereby unlocking liquidity without having to sell their NFT holdings."
+              />
+              <Accordion
+                title="How can this NFT be used for non-payment of interest?"
+                content="This NFT offers a unique utility wherein it can be utilized to offset interest payments under specific circumstances. If you choose to pledge your NFT as collateral and borrow funds against another NFT asset, you have the option to use this NFT to waive the interest payments on the borrowed funds. This feature provides flexibility and additional value to the ownership of this NFT, allowing strategic financial management within the platform's ecosystem."
+              />
+            </AccordionWrapper>
+
+          </FaqsSection>
 
 
-        <NewsLetterSection>
-          <NewsLetterBox>
-          <Heading>Newsletter</Heading>
-          <p>
-            Stay updated with our latest news and developments by subscribing
-            to our newsletter.
-          </p>
-          <NewsletterForm onSubmit={submitHandler}>
-            <EmailInput
-              type="email"
-              onChange={inputHandler}
-              name="email"
-              placeholder="Your email"
-              value={input}
-              required
-            />
-            <SubscribeButton type="submit">Subscribe</SubscribeButton>
-          </NewsletterForm>
-            <Alert>{message}</Alert>
-          </NewsLetterBox>
-        </NewsLetterSection>
-      </Main>
-      
-      <Footer>&copy; 2024 Miura. All rights reserved.</Footer>
-    </Wrapper>
+          <NewsLetterSection>
+            <NewsLetterBox>
+              <Heading>Newsletter</Heading>
+              <p>
+                Stay updated with our latest news and developments by subscribing
+                to our newsletter.
+              </p>
+              <NewsletterForm onSubmit={submitHandler}>
+                <EmailInput
+                  type="email"
+                  onChange={inputHandler}
+                  name="email"
+                  placeholder="Your email"
+                  value={input}
+                  required
+                />
+                <SubscribeButton type="submit">Subscribe</SubscribeButton>
+              </NewsletterForm>
+              <Alert>{message}</Alert>
+            </NewsLetterBox>
+          </NewsLetterSection>
+        </Main>
+
+        <Footer>&copy; 2024 Miura. All rights reserved.</Footer>
+      </Wrapper>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import styled from "styled-components";
+import Head from "next/head";
 
 const LoadingScreen = styled.div`
   width: 100%;
@@ -38,9 +39,15 @@ const DynamicMain = dynamic(() => import('../src/DappPage'), {
 // DappPage component
 const DappPage = () => {
   return (
+    <>
+    <Head>
+      <title>Miura NFT - Mint Now</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <Suspense fallback={<CustomLoading />}>
       <DynamicMain />
     </Suspense>
+    </>
   );
 };
 

@@ -606,10 +606,7 @@ const Mintindapp = (props: HomeProps) => {
   return (
     <main>
       <>
-      <Head>
-        <title>Miura NFT - Mint Now!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    
         <Header>
           <WalletContainer>
             <Wallet>
