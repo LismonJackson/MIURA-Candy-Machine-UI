@@ -40,10 +40,6 @@ const DynamicMain = dynamic(() => import('../src/DappPage'), {
 const DappPage = () => {
   return (
     <>
-    <Head>
-      <title>Miura NFT - Mint Now</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
     <Suspense fallback={<CustomLoading />}>
       <DynamicMain />
     </Suspense>

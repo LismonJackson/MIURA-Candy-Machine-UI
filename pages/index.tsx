@@ -38,10 +38,6 @@ const DynamicAbout = dynamic(() => import('../src/AboutPage'), {
 const AboutPage = () => {
   return (
     <>
-    <Head>
-      <title>Miura Protocol - Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
     <Suspense fallback={<CustomLoading />}>
       <DynamicAbout />
     </Suspense>

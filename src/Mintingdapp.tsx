@@ -601,7 +601,9 @@ const Mintindapp = (props: HomeProps) => {
     </svg>
   )
 
-
+  useEffect(() => {
+    document.title = "Miura NFT - Mint Now!";
+  }, []);
 
   return (
     <main>
