@@ -3700,7 +3700,7 @@ const HomeComponent = () => {
                       <HeroHeader>Earn Interest & Borrow Assets Against NFTs, Seamlessly</HeroHeader>
                       <HeroParagraph>Unleash the full potential of your NFT and borrowing against your NFT as collateral.</HeroParagraph>
                       <div>
-                        <WhiteButton><a href="/dapp">MINT NFT</a></WhiteButton>
+                        <WhiteButton><Link href="/dapp">MINT NFT</Link></WhiteButton>
                         <TransparentButton>JOIN DISCORD</TransparentButton>
                       </div>
                     </LeftColumn>
