@@ -746,6 +746,12 @@ const WhiteButton = styled.button`
   margin-right: 10px;
   font-size: 0.8rem;
 
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+
   transition: all 200ms ease-in-out;
 
   &:hover {
@@ -3642,11 +3648,11 @@ const HomeComponent = () => {
                     </LogoContainer>
                     <NavOverlay visible={isNavVisible}>
                       <NavLinksContainerMobile>
-                        <NavLinkMobile href="#">About</NavLinkMobile>
-                        <NavLinkMobile href="#">Claim</NavLinkMobile>
-                        <NavLinkMobile href="#">Governance</NavLinkMobile>
-                        <NavLinkMobile href="#">Roadmap</NavLinkMobile>
-                        <NavLinkMobile href="#">Contact</NavLinkMobile>
+                        <NavLinkMobile href="#about">About</NavLinkMobile>
+                        <NavLinkMobile href="/dapp">Claim</NavLinkMobile>
+                        <NavLinkMobile href="#governance">Governance</NavLinkMobile>
+                        <NavLinkMobile href="#roadmap">Roadmap</NavLinkMobile>
+                        <NavLinkMobile href="#newsletter">Newsletter</NavLinkMobile>
                       </NavLinksContainerMobile>
                     </NavOverlay>
 
@@ -3657,11 +3663,11 @@ const HomeComponent = () => {
                     <Logo>Miura Protocol</Logo>
 
                     <NavLinksContainer>
-                      <NavLink href="#">About</NavLink>
-                      <NavLink href="#">Claim</NavLink>
-                      <NavLink href="#">Governance</NavLink>
-                      <NavLink href="#">Roadmap</NavLink>
-                      <NavLink href="#">Contact</NavLink>
+                      <NavLink href="#about">About</NavLink>
+                      <NavLink href="/dapp">Claim</NavLink>
+                      <NavLink href="#governance">Governance</NavLink>
+                      <NavLink href="#roadmap">Roadmap</NavLink>
+                      <NavLink href="#newsletter">Newsletter</NavLink>
                     </NavLinksContainer>
                   </NavContainer>
                 )}
@@ -3679,7 +3685,7 @@ const HomeComponent = () => {
                       )}
                     </Wallet>
                   </WalletContainer>
-                  <GearIcon>☾☼</GearIcon>
+                  {/* <GearIcon>☾☼</GearIcon> */}
                 </NavButtonContainer>
               </Header>
 
@@ -3693,7 +3699,7 @@ const HomeComponent = () => {
                       <HeroHeader>Earn Interest & Borrow Assets Against NFTs, Seamlessly</HeroHeader>
                       <HeroParagraph>Unleash the full potential of your NFT and borrowing against your NFT as collateral.</HeroParagraph>
                       <div>
-                        <WhiteButton>MINT NFT</WhiteButton>
+                        <WhiteButton><a href="/dapp">MINT NFT</a></WhiteButton>
                         <TransparentButton>JOIN DISCORD</TransparentButton>
                       </div>
                     </LeftColumn>
@@ -3746,7 +3752,7 @@ const HomeComponent = () => {
                 </HeroSection>
 
 
-                <InfoSection>
+                <InfoSection id="about">
                   <InfoBoxCol>
                     <InfoLeftColumn>
                       <Image src="/lock.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
@@ -3801,7 +3807,7 @@ const HomeComponent = () => {
 
 
 
-                <SliderSection id="eventSection">
+                <SliderSection id="governance">
                   <SliderBox>
                     <Image src="/plain.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
                     <SliderHeader>
@@ -3816,7 +3822,7 @@ const HomeComponent = () => {
 
                 </SliderSection>
 
-                <CarouselSection>
+                <CarouselSection id="roadmap">
                   <Image src="/plain.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
 
                   <CarouselHeader>
@@ -3845,7 +3851,7 @@ const HomeComponent = () => {
                     </InfoLeftColumn>
                   </InfoBoxCol2>
                 </InfoSection>
-                <NewsLetterSection>
+                <NewsLetterSection id="newsletter">
 
                   <NewsLetterBox>
                     <DottedSquare1 src="/dots.png" alt="Your Image"></DottedSquare1>
@@ -3853,7 +3859,7 @@ const HomeComponent = () => {
                     <NewsLetterSectionColBox>
 
                       <NewsLetterImageColumn>
-                        <Image src="/mimage7.png" alt="Your Image" width={500} height={400} /> {/* Adjust image path and dimensions */}
+                        <Image src="/mimage7.png" alt="newsletter Image" width={500} height={400} /> {/* Adjust image path and dimensions */}
                       </NewsLetterImageColumn>
                       <NewsLetterSectionColumn>
                         <NewsLetterTopText>
@@ -3891,13 +3897,13 @@ const HomeComponent = () => {
                   <PartnersHeading>Our ecosystem:</PartnersHeading>
                   <PartnersBox>
                     <PartnerCol1>
-                      <Image src="/partner1.png" alt="Your Image" width={200} height={50} /> {/* Adjust image path and dimensions */}
+                      <Image src="/partner1.png" alt="Phantom Logo" width={200} height={50} /> {/* Adjust image path and dimensions */}
                     </PartnerCol1>
                     <PartnerCol2>
-                      <Image src="/partner2.png" alt="Your Image" width={200} height={50} /> {/* Adjust image path and dimensions */}
+                      <Image src="/partner2.png" alt="Solana Logo" width={200} height={50} /> {/* Adjust image path and dimensions */}
                     </PartnerCol2>
                     <PartnerCol3>
-                      <Image src="/partner3.png" alt="Your Image" width={200} height={50} /> {/* Adjust image path and dimensions */}
+                      <Image src="/partner3.png" alt="Metaplex Logo" width={200} height={50} /> {/* Adjust image path and dimensions */}
                     </PartnerCol3>
 
                   </PartnersBox>
