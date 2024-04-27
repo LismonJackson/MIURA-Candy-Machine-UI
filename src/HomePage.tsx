@@ -1764,14 +1764,14 @@ const MarketStatsParagraph = styled.p`
 
 
 const SliderSection = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 100px 0px 0px 0px;
+  padding: 180px 0px 180px 0px;
   background-color: #111111;
 
 `;
