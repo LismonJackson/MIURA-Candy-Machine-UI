@@ -3823,7 +3823,7 @@ const HomeComponent = () => {
                     Project Roadmap
                   </CarouselHeader>
                   <CarouselParagraph>
-                  The Miura roadmap is concise and offers insights into the project's objectives.
+                  The Miura roadmap is concise and offers insights into the project&apos;s objectives.
                     </CarouselParagraph>
                   <Carousel slides={CAROUSEL_SLIDES} options={CAROUSEL_OPTIONS} />
                 </CarouselSection>
@@ -3881,7 +3881,7 @@ const HomeComponent = () => {
                       <SubscribeButton type="submit">Subscribe</SubscribeButton>
                     </NewsletterForm>
                     <NoticeMessage>
-                      Your email is safe with us, we don't spam.
+                      Your email is safe with us, we don&apos;t spam.
                     </NoticeMessage>
                     <Alert>{message}</Alert>
                   </NewsLetterBox>
