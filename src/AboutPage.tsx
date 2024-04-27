@@ -677,7 +677,7 @@ const AboutComponent = () => {
                             src="https://nftstorage.link/ipfs/bafybeibnie63fmcgor2gptiowailq5sgbv6hkmwxeahfhhy4evadbhlhji/0.jpg"
                             alt="Team Image"
                         /> */}
-              <ParticleCanvas backgroundColor="#09090B" animate={true} />
+              <ParticleCanvas backgroundColor="#010101" animate={true} />
               <Overlay />
             </div>
             <HeroText>

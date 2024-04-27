@@ -7,7 +7,7 @@ const StyledCanvas = styled.canvas`
   height: 100vh; /* Set height to 100% of viewport height */
   background-color: ${(props) => props.backgroundColor};
   // background: linear-gradient(to right, #cc3300, #00ccff);
-  background: #010101;
+  background: ${(props) => props.backgroundColor};
 
 
 `;
