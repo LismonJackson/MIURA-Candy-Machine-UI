@@ -30,12 +30,12 @@ const CustomLoading = () => (
   </LoadingScreen>
 );
 
-const DynamicAbout = dynamic(() => import('../src/AboutPage'), {
+const DynamicAbout = dynamic(() => import('../src/HomePage'), {
   suspense: true,
   ssr: false,
 });
 
-const AboutPage = () => {
+const HomePage = () => {
   return (
     <>
     <Suspense fallback={<CustomLoading />}>
@@ -45,4 +45,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default HomePage;
