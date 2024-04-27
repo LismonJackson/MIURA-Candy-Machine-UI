@@ -1601,7 +1601,7 @@ const MarketStatsSection = styled.section`
   min-height: 100vh; 
   width: 100%;
   background-image: linear-gradient(to bottom, rgb(22, 22, 22) 0%, #111111 82%, #09090B 100%);
-  padding: 20px 0px;
+  padding: 30px 0px;
 `;
 
 
@@ -3918,7 +3918,7 @@ const HomeComponent = () => {
                 </LightGrayOverlay>
                 <FooterSection>
                   <LogoText>Miura Protocol</LogoText>
-                  <Description>Nam posuere accumsan porta. Integer id orci sed ante tincidunt tincidunt sit amet sed libero.</Description>
+                  <Description>A decentralized non-custotia liquidity market protocol where users can borrow assets</Description>
                   <p>&copy; 2024 Miura Protocol</p>
                 </FooterSection>
 

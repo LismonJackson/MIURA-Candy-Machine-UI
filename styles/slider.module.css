@@ -52,7 +52,7 @@
 @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
     .embla {
-        --slide-height: 27rem;
+        --slide-height: 35rem;
         --slide-spacing: 1.7rem;
         --slide-size: 30%;
     }
