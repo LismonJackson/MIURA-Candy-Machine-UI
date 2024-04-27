@@ -1588,8 +1588,8 @@ const InfoParagraph = styled.p`
     font-size: 1.6rem;
   }
 
-`;
 
+`;
 
 const MarketStatsSection = styled.section`
   position: relative;
@@ -1598,11 +1598,12 @@ const MarketStatsSection = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100vh;
+  min-height: 100vh; 
   width: 100%;
   background-image: linear-gradient(to bottom, rgb(22, 22, 22) 0%, #111111 82%, #09090B 100%);
-
+  padding: 20px;
 `;
+
 
 
 const Hexagon1 = styled.img`
