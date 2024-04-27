@@ -109,13 +109,13 @@ const Header = styled.header`
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    padding: 40px 30px; /* Adjust padding as needed */
+    padding: 5px 30px; /* Adjust padding as needed */
 
   }
 
     @media (min-width: 576px) {
     /* Small devices (phones) */
-    padding: 40px 30px; /* Adjust padding as needed */
+    padding: 5px 30px; /* Adjust padding as needed */
 
   }
 
@@ -1601,7 +1601,7 @@ const MarketStatsSection = styled.section`
   min-height: 100vh; 
   width: 100%;
   background-image: linear-gradient(to bottom, rgb(22, 22, 22) 0%, #111111 82%, #09090B 100%);
-  padding: 20px;
+  padding: 20px 0px;
 `;
 
 
