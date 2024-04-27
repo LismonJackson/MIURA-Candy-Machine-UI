@@ -3535,46 +3535,46 @@ const CAROUSEL_COUNT = 4
 const CAROUSEL_SLIDES = Array.from(Array(CAROUSEL_COUNT).keys())
 
 const HomeComponent = () => {
-
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("");
   const { connection } = useConnection();
   const wallet = useWallet();
   const [balance, setBalance] = useState<number>();
-  const [mintedItems, setMintedItems] = useState<Nft[]>();
+  const [isMobile, setIsMobile] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(false); // Unified state for navigation visibility
 
+  const handleNavToggle = () => {
+    setIsNavVisible(!isNavVisible);
+  };
 
-
-
-
+  const handleNavClose = () => {
+    setIsNavVisible(false);
+  };
 
   const inputHandler = (e) => {
     setInput(e.target.value);
-  }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (input) {
-      // console.log(input);
       try {
-        await addDoc(collection(db, 'emails'), {
+        await addDoc(collection(db, "emails"), {
           email: input,
-          time: serverTimestamp()
+          time: serverTimestamp(),
         });
-        // console.log('Document successfully written!');
         setInput("");
-        setMessage("Thank you for subscribing to our newsletter!")
+        setMessage("Thank you for subscribing to our newsletter!");
         setTimeout(() => {
           setMessage("");
-        }, 3000)
+        }, 3000);
       } catch (error) {
-        console.error('Error adding entry: ', error);
+        console.error("Error adding entry: ", error);
         setInput("");
-        setMessage("Submission Failed!")
+        setMessage("Submission Failed!");
         setTimeout(() => {
           setMessage("");
-        }, 3000)
-
+        }, 3000);
       }
     }
   };
@@ -3582,7 +3582,6 @@ const HomeComponent = () => {
   useEffect(() => {
     document.title = "Miura Protocol - Home";
   }, []);
-
 
   useEffect(() => {
     (async () => {
@@ -3593,28 +3592,18 @@ const HomeComponent = () => {
     })();
   }, [wallet, connection]);
 
-  const [isNavVisible, setNavVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  const toggleNav = () => {
-    setNavVisible(!isNavVisible);
-  };
-
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
     checkIfMobile(); // Run initially to set the state based on current window size
-    window.addEventListener('resize', checkIfMobile);
-    return () => window.removeEventListener('resize', checkIfMobile);
+    window.addEventListener("resize", checkIfMobile);
+    return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
   const endpoint = useMemo(() => rpcHost, []);
 
-  // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking and lazy loading --
-  // Only the wallets you configure here will be compiled into your application, and only the dependencies
-  // of wallets that your users connect to will be loaded.
   const wallets = useMemo(
     () => [
       new BackpackWalletAdapter(),
@@ -3639,30 +3628,38 @@ const HomeComponent = () => {
 
             </GrayOverlay>
             <Wrapper>
-              <Header>
-
+            <Header>
                 {isMobile ? (
                   <>
                     <LogoContainer>
-                      {isMobile && <ToggleButton onClick={toggleNav}>&#9776;</ToggleButton>}
+                      {isMobile && (
+                        <ToggleButton onClick={handleNavToggle}>&#9776;</ToggleButton>
+                      )}
                       <Logo>Logo</Logo>
                     </LogoContainer>
                     <NavOverlay visible={isNavVisible}>
                       <NavLinksContainerMobile>
-                        <NavLinkMobile href="#about">About</NavLinkMobile>
-                        <NavLinkMobile href="/dapp">Claim</NavLinkMobile>
-                        <NavLinkMobile href="#governance">Governance</NavLinkMobile>
-                        <NavLinkMobile href="#roadmap">Roadmap</NavLinkMobile>
-                        <NavLinkMobile href="#newsletter">Newsletter</NavLinkMobile>
+                        <NavLinkMobile href="#about" onClick={handleNavClose}>
+                          About
+                        </NavLinkMobile>
+                        <NavLinkMobile href="/dapp" onClick={handleNavClose}>
+                          Claim
+                        </NavLinkMobile>
+                        <NavLinkMobile href="#governance" onClick={handleNavClose}>
+                          Governance
+                        </NavLinkMobile>
+                        <NavLinkMobile href="#roadmap" onClick={handleNavClose}>
+                          Roadmap
+                        </NavLinkMobile>
+                        <NavLinkMobile href="#newsletter" onClick={handleNavClose}>
+                          Newsletter
+                        </NavLinkMobile>
                       </NavLinksContainerMobile>
                     </NavOverlay>
-
                   </>
-
                 ) : (
                   <NavContainer>
                     <Logo>Miura Protocol</Logo>
-
                     <NavLinksContainer>
                       <NavLink href="#about">About</NavLink>
                       <NavLink href="/dapp">Claim</NavLink>
@@ -3673,7 +3670,6 @@ const HomeComponent = () => {
                   </NavContainer>
                 )}
                 <NavButtonContainer>
-                  {/* <NavButton>Launch App &#10148;</NavButton> */}
                   <WalletContainer>
                     <Wallet>
                       {wallet ? (
@@ -3686,7 +3682,6 @@ const HomeComponent = () => {
                       )}
                     </Wallet>
                   </WalletContainer>
-                  {/* <GearIcon>☾☼</GearIcon> */}
                 </NavButtonContainer>
               </Header>
 
