@@ -4370,7 +4370,7 @@ const HomeComponent = () => {
                       </div>
                     </LeftColumn>
                     <RightColumn>
-                      <Image src="/GIFMAIN.GIF" alt="Your Image" width={900} height={450} /> {/* Adjust image path and dimensions */}
+                      <Image src="/maingif.gif" alt="Your Image" width={900} height={450} /> {/* Adjust image path and dimensions */}
                     </RightColumn>
                   </HeroBoxCol>
                   <HIWBoxCol>
