@@ -4370,7 +4370,7 @@ const HomeComponent = () => {
                       </div>
                     </LeftColumn>
                     <RightColumn>
-                      <Image src="/maingif.gif" alt="Your Image" width={900} height={450} /> {/* Adjust image path and dimensions */}
+                      <Image src="https://plum-xenogeneic-gerbil-275.mypinata.cloud/ipfs/QmX3NWPyuXJHhXPaN7MUTdL3QtaPJzd6pTJEKgaGHTzPBM" alt="Your Image" width={900} height={450} /> {/* Adjust image path and dimensions */}
                     </RightColumn>
                   </HeroBoxCol>
                   <HIWBoxCol>

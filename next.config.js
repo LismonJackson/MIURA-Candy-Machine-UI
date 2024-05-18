@@ -3,8 +3,11 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   compiler: {
-    styledComponents: true
-  }
+    styledComponents: true,
+  },
+  images: {
+    domains: ['plum-xenogeneic-gerbil-275.mypinata.cloud'],
+  },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
