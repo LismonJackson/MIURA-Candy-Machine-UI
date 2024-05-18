@@ -1613,6 +1613,8 @@ const InfoLeftColumn = styled.div`
 
 `;
 
+
+// Info
 const InfoRightColumn = styled.div`
   display: flex;
   justify-content: center;
