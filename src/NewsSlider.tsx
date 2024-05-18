@@ -76,40 +76,42 @@ const Card = styled.div`
 
 
 const CardHeading = styled.h2`
-  font-size: 0.8em;
+  font-size: 2rem;
   color: #fff;
   margin: 20px 0px 20px 0px;
   
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    font-size: 0.5em;
+    font-size: 1.3rem;
+    margin: 5px 0px 5px 0px;
 
   }
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    font-size: 0.6em;
+    font-size: 1.5rem;
+    margin: 5px 0px 5px 0px;
 
   }
 
   @media (min-width: 768px) {
     /* Medium devices (tablets) */
-  
-    font-size: 0.7em;
+    font-size: 1.7rem;    
+    margin: 5px 0px 5px 0px;
 
   }
 
   @media (min-width: 992px) {
     /* Large devices (desktops) */
-    font-size: 0.7em;
+    font-size: 1.8rem;
+    margin: 20px 0px 20px 0px;
 
-
-    
   }
 
   @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
-    font-size: 0.8em;
+    font-size: 2rem;  
+    margin: 20px 0px 20px 0px;
 
   }
 
@@ -125,31 +127,27 @@ const CardText = styled.p`
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    
+    font-size: 0.8rem;
   }
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    
+    font-size: 0.8rem;
   }
 
   @media (min-width: 768px) {
     /* Medium devices (tablets) */
-  
-    
+    font-size: 1.1rem;    
   }
 
   @media (min-width: 992px) {
     /* Large devices (desktops) */
-   
-
-    
+    font-size: 1.2rem;    
   }
 
   @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
-  
-  }
+    font-size: 1.3rem;  }
 
 `;
 
@@ -286,7 +284,7 @@ const NewsSlider: React.FC<PropType> = (props) => {
                     <CardHeading>{headings[index]}</CardHeading>
                     <CardText>{text[index]}</CardText>
 
-                    <SliderButton>Learn More</SliderButton>
+                    {index === 0 ? (<SliderButton>Learn More</SliderButton>) :  <></>}
                     
 
                 </Card>

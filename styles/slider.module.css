@@ -14,7 +14,7 @@
 @media (min-width: 280px) {
     /* Extra Small devices (phones) */
     .embla {
-        --slide-height: 30rem;
+        --slide-height: auto;
         --slide-spacing: 2rem;
         --slide-size: 83%;
     }
@@ -24,7 +24,7 @@
 @media (min-width: 576px) {
 /* Small devices (phones) */
 .embla {
-    --slide-height: 30rem;
+    --slide-height: auto;
     --slide-spacing: 2rem;
     --slide-size: 83%;
 }
@@ -34,7 +34,7 @@
 @media (min-width: 768px) {
     /* Medium devices (tablets) */
     .embla {
-        --slide-height: 30rem;
+        --slide-height: auto;
         --slide-spacing: 2rem;
         --slide-size: 83%;
     }

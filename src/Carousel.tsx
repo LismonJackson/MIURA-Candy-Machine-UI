@@ -22,8 +22,8 @@ import Image from "next/image";
 const CarouselItemBox = styled.div`
     position: relative;
     max-width: 100%;
-    background-color: rgb(25,25,25);
-    border: 2px solid #111111;
+    background-color: #292929;
+    border: 1px solid rgb(22, 22, 22);
     border-radius: 20px;
 
 `;
@@ -33,7 +33,7 @@ const CarouselBackgroundLayerOne = styled.div`
     position: absolute;
     height: 20px;
     // max-width: 100%;
-    background-color: rgba(25, 25, 25, 0.6);
+    background-color: rgba(41, 41, 41, 0.5);
     
     left: 5%;
     bottom: -20px;
@@ -46,31 +46,36 @@ const CarouselBackgroundLayerOne = styled.div`
 const CarouselText = styled.div`
     padding: 3rem;
 
-
     @media (min-width: 280px) {
         /* Extra Small devices (phones) */
         padding: 2rem;
+        font-size: 1.0em;
+
         b {
             color: #FFDB5A;
-            font-size: 1em;
+            font-size: 0.9em;
         }
       }
     
       @media (min-width: 576px) {
         /* Small devices (phones) */
         padding: 2rem;
+        font-size: 0.9em;
+
         b {
             color: #FFDB5A;
-            font-size: 1.0em;
+            font-size: 0.9em;
         }
       }
     
       @media (min-width: 768px) {
         /* Medium devices (tablets) */
         padding: 2rem;
+        font-size: 1.0em;
+
         b {
             color: #FFDB5A;
-            font-size: 1.1em;
+            font-size: 1.0em;
         }
         
       }
@@ -78,6 +83,8 @@ const CarouselText = styled.div`
       @media (min-width: 992px) {
         /* Large devices (desktops) */
         padding: 3rem;
+        font-size: 1.2em;
+
         b {
             color: #FFDB5A;
             font-size: 1.2em;
@@ -89,6 +96,8 @@ const CarouselText = styled.div`
       @media (min-width: 1200px) {
         /* Extra large devices (large desktops) */
           padding: 3rem;
+          font-size: 1.2rem;
+
           b {
             color: #FFDB5A;
             font-size: 1.2rem;

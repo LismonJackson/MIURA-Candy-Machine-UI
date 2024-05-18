@@ -36,6 +36,10 @@ import { useMemo } from "react";
 import Mintingdapp from "./Mintingdapp";
 import { rpcHost, candyMachineId, network } from "./config";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 
 const Wrapper = styled.div`
   font-family: Arial, sans-serif;
@@ -654,7 +658,63 @@ const RightColumn = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  img {
+    max-width: 900px !important;
+    max-height: 450px !important;
+  }
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    img {
+      max-width: 400px !important;
+      max-height: 200px !important; /* Maintain 2:1 aspect ratio */
+    }
+
+    margin-top: 60px;
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    img {
+      max-width: 400px !important;
+      max-height: 200px !important; /* Maintain 2:1 aspect ratio */
+    }
+
+    margin-top: 60px;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    img {
+      max-width: 400px !important;
+      max-height: 200px !important; /* Maintain 2:1 aspect ratio */
+    }
+
+    margin-top: 60px;
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    img {
+      max-width: 900px !important;
+      max-height: 450px !important;
+    }
+
+    margin-top: 0px;
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    img {
+      max-width: 900px !important;
+      max-height: 450px !important;
+    }
+
+    margin-top: 0px;
+  }
 `;
+
 
 const HeroHeader = styled.h1`
   font-size: 2.5rem; 
@@ -805,6 +865,14 @@ const TransparentButton = styled.button`
   font-weight: bold;
   cursor: pointer;
   margin-right: 10px;
+  a {
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      color: black;
+    }
+  }
+
 
   transition: all 200ms ease-in-out;
 
@@ -859,7 +927,7 @@ const HIWBoxCol = styled.div`
 `;
 
 const HIWBox = styled.div`
-  margin-top: 50px;
+margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -870,6 +938,40 @@ const HIWBox = styled.div`
     padding: 15px 0px 0px 0px;
   }
 
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    padding: 0 20px;
+
+
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    padding: 0 40px;
+
+
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    padding: 0 80px;
+
+
+    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    padding: 0 100px;
+
+    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    padding: 0 280px;
+
+  }
 
 `;
 
@@ -1312,6 +1414,41 @@ const InfoSection = styled.section`
   padding: 80px 0px 80px 0px;
   background: #111111;
 
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    padding: 0 20px;
+
+
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    padding: 0 40px;
+
+
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    padding: 0 80px;
+
+
+    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    padding: 80px 0px 80px 0px;
+
+    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    padding: 80px 0px 80px 0px;
+
+  }
+
 
 `;
 
@@ -1519,7 +1656,7 @@ const InfoRightColumn = styled.div`
 const InfoHeader = styled.h2`
   font-size: 2.5rem; 
   margin-bottom: 20px;
-  color: #fff;
+  color: #FFDB5A;
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
@@ -1602,6 +1739,44 @@ const MarketStatsSection = styled.section`
   width: 100%;
   background-image: linear-gradient(to bottom, rgb(22, 22, 22) 0%, #111111 82%, #09090B 100%);
   padding: 30px 0px;
+
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    padding: 30px 0px;
+    min-height: auto; 
+
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    padding: 30px 0px;
+    min-height: auto; 
+
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    padding: 30px 0px;
+    min-height: auto; 
+    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    padding: 30px 0px;
+    min-height: 100vh; 
+
+    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    padding: 30px 0px;
+    min-height: 100vh; 
+
+
+  }
 `;
 
 
@@ -1613,6 +1788,40 @@ const Hexagon1 = styled.img`
   height: auto;
   top: 40%;
   left: 10%;
+
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    opacity: 0%;
+
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    opacity: 0%;
+
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    opacity: 0%;
+
+    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    opacity: 80%;
+
+
+    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    opacity: 80%;
+
+  }
 
 
 `;
@@ -1627,6 +1836,9 @@ const Hexagon2 = styled.img`
   left: 30%;
   opacity: 80%;
 
+ 
+
+
 
 `;
 
@@ -1638,6 +1850,8 @@ const Hexagon3 = styled.img`
   top: 10%;
   left: 20%;
   opacity: 70%;
+
+  
 
 
 `;
@@ -1665,13 +1879,13 @@ const MarketStatsBox = styled.section`
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    width: 90%;
+    width: 85%;
 
   }
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    width: 90%;
+    width: 85%;
 
   }
 
@@ -1699,36 +1913,42 @@ const MarketStatsBox = styled.section`
 `;
 
 const MarketStatsHeader = styled.h2`
-  font-size: 2.5rem; /* Increase font size */
+  font-size: 2.5rem; 
   margin-bottom: 20px;
-  color: #fff;
+  color: #FFDB5A;
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    font-size: 1.5rem;
+    font-size: 1.0rem; 
+
   }
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    font-size: 1.6rem;
+    font-size: 1.2rem; 
+
   }
 
   @media (min-width: 768px) {
     /* Medium devices (tablets) */
-    font-size: 1.8rem;
+    font-size: 1.8rem; 
+
     
   }
 
   @media (min-width: 992px) {
     /* Large devices (desktops) */
-    font-size: 2.0rem;
+    font-size: 2.0rem; 
+
     
   }
 
   @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
-    font-size: 2.5rem;
+    font-size: 2.5rem; 
+
   }
+  
 `;
 
 const MarketStatsParagraph = styled.p`
@@ -1738,27 +1958,136 @@ const MarketStatsParagraph = styled.p`
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    font-size: 1.3rem;
+    font-size: 1.0rem;
   }
 
   @media (min-width: 768px) {
     /* Medium devices (tablets) */
-    font-size: 1.4rem;    
+    font-size: 1.2rem;
+    
   }
 
   @media (min-width: 992px) {
     /* Large devices (desktops) */
-    font-size: 1.5rem;    
+    font-size: 1.4rem;
+    
   }
 
   @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
-    font-size: 1.6rem;  }
+    font-size: 1.6rem;
+  }
+`;
+
+
+const TotalCirculationWidget = styled.div`
+    display: flex;
+    flex-direction: row;
+    padding: 10px 30px;
+    background-color: #292929;
+    border: 2px solid #424242;
+    border-radius: 14px;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: now-wrap;
+
+
+`;
+
+
+const CirlceFrameImg = styled.img`
+    border-radius: 50%;
+    max-width: 30%;
+    height: 30%;
+    flex: 1;
+
+
+
+`;
+
+
+const SupplyBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    // padding: 15px 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 2;
+    margin-left: 20px;
+
+
+`;
+
+
+const SupplyHeading = styled.h3`
+    color: #fff;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 2em;
+
+    @media (min-width: 280px) {
+      /* Extra Small devices (phones) */
+      font-size: 1.3rem;
+    }
+  
+    @media (min-width: 576px) {
+      /* Small devices (phones) */
+      font-size: 1.5rem;
+    }
+  
+    @media (min-width: 768px) {
+      /* Medium devices (tablets) */
+      font-size: 1.7rem;    
+    }
+  
+    @media (min-width: 992px) {
+      /* Large devices (desktops) */
+      font-size: 1.8rem;    
+    }
+  
+    @media (min-width: 1200px) {
+      /* Extra large devices (large desktops) */
+      font-size: 2rem;  }
+  
+
+`;
+
+
+const SupplyText = styled.p`
+    color: #fff;
+    font-size: 1.4em;
+    margin-left: 10px;
+    text-align: left;
+
+    @media (min-width: 280px) {
+      /* Extra Small devices (phones) */
+      font-size: 1.0rem;
+    }
+  
+    @media (min-width: 576px) {
+      /* Small devices (phones) */
+      font-size: 1.1rem;
+    }
+  
+    @media (min-width: 768px) {
+      /* Medium devices (tablets) */
+      font-size: 1.2rem;    
+    }
+  
+    @media (min-width: 992px) {
+      /* Large devices (desktops) */
+      font-size: 1.3rem;    
+    }
+  
+    @media (min-width: 1200px) {
+      /* Extra large devices (large desktops) */
+      font-size: 1.4rem;  }
+  
 
 `;
 
@@ -1773,6 +2102,43 @@ const SliderSection = styled.section`
   text-align: center;
   padding: 180px 0px 180px 0px;
   background-color: #111111;
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    padding: 30px 0px;
+    min-height: auto; 
+
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    padding: 30px 0px;
+    min-height: auto; 
+
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    padding: 30px 0px;
+    min-height: auto; 
+    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    padding: 100px 0px 100px 0px;
+    min-height: 100vh; 
+
+    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    padding: 120px 0px 120px 0px;
+    min-height: 100vh; 
+
+
+  }
 
 `;
 
@@ -1793,36 +2159,27 @@ const SliderHeader = styled.h2`
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    font-size: 1.6rem;
-
+    font-size: 1.3rem;
   }
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    font-size: 1.8rem;
-
-
+    font-size: 1.5rem;
   }
 
   @media (min-width: 768px) {
     /* Medium devices (tablets) */
-    font-size: 2.0rem;
-
-
-    
+    font-size: 1.7rem;    
   }
 
   @media (min-width: 992px) {
     /* Large devices (desktops) */
-
-    font-size: 2.2rem;
-
-    
+    font-size: 1.8rem;    
   }
 
   @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
-    font-size: 2.5rem;
+    font-size: 2rem;  
   }
 
 `;
@@ -1834,29 +2191,30 @@ const SliderParagraph = styled.p`
 
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    font-size: 1.2rem;
+    font-size: 0.8rem;
+    padding: 0 20px;
 
   }
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    font-size: 1.2rem;
-
+    font-size: 1.0rem;
+    padding: 0 20px;
 
   }
 
   @media (min-width: 768px) {
     /* Medium devices (tablets) */
     font-size: 1.2rem;
-
+    padding: 0 20px;
 
     
   }
 
   @media (min-width: 992px) {
     /* Large devices (desktops) */
-
     font-size: 1.4rem;
+    padding: 0 120px;
 
     
   }
@@ -1864,12 +2222,13 @@ const SliderParagraph = styled.p`
   @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
     font-size: 1.6rem;
+    padding: 0 120px;
+
   }
 `;
 
 const CarouselSection = styled.section`
 
-  // height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1877,7 +2236,9 @@ const CarouselSection = styled.section`
   align-items: center;
   text-align: center;
   padding: 60px 0px 100px 0px;
-  background-image: radial-gradient(circle, #333333, #111111);
+  // background-image: radial-gradient(circle, #333333, #111111);
+  // background-image: #292929;
+  background-color: #101010;
   border: 1px solid #151518;
 
 
@@ -1885,72 +2246,80 @@ const CarouselSection = styled.section`
 
 
 const CarouselHeader = styled.h2`
-  font-size: 2.5rem; /* Increase font size */
-  margin: 40px 0px 20px 0px;
-  color: #fff;
+font-size: 2.5rem; /* Increase font size */
+margin: 40px 0px 20px 0px;
+color: #fff;
 
-  @media (min-width: 280px) {
-    /* Extra Small devices (phones) */
-    font-size: 1.4rem; 
-  }
+@media (min-width: 280px) {
+  /* Extra Small devices (phones) */
+  font-size: 1.3rem;
+}
 
-  @media (min-width: 576px) {
-    /* Small devices (phones) */
-    font-size: 1.6rem; 
-  }
+@media (min-width: 576px) {
+  /* Small devices (phones) */
+  font-size: 1.5rem;
+}
 
-  @media (min-width: 768px) {
-    /* Medium devices (tablets) */
-    font-size: 1.8rem;     
-  }
+@media (min-width: 768px) {
+  /* Medium devices (tablets) */
+  font-size: 1.7rem;    
+}
 
-  @media (min-width: 992px) {
-    /* Large devices (desktops) */
-    font-size: 2.0rem; 
+@media (min-width: 992px) {
+  /* Large devices (desktops) */
+  font-size: 1.8rem;    
+}
 
-    
-  }
+@media (min-width: 1200px) {
+  /* Extra large devices (large desktops) */
+  font-size: 2rem;  
+}
 
-  @media (min-width: 1200px) {
-    /* Extra large devices (large desktops) */
-    font-size: 2.5rem; 
-  }
 
 
 `;
 
 const CarouselParagraph = styled.p`
-  font-size: 1.6rem; /* Increase font size */
-  margin-bottom: 20px;
-  margin: 0px 0px 40px 0px;
+font-size: 1.6rem; /* Increase font size */
+margin-bottom: 20px;
+margin: 0px 0px 40px 0px;
 
-  @media (min-width: 280px) {
-    /* Extra Small devices (phones) */
-    font-size: 1.0rem; 
-  }
+@media (min-width: 280px) {
+  /* Extra Small devices (phones) */
+  font-size: 0.8rem;
+  padding: 0 20px;
 
-  @media (min-width: 576px) {
-    /* Small devices (phones) */
-    font-size: 1.2rem; 
-  }
+}
 
-  @media (min-width: 768px) {
-    /* Medium devices (tablets) */
-    font-size: 1.4rem; 
-  }
+@media (min-width: 576px) {
+  /* Small devices (phones) */
+  font-size: 1.0rem;
+  padding: 0 20px;
 
-  @media (min-width: 992px) {
-    /* Large devices (desktops) */
-    font-size: 1.6rem; 
+}
 
-    
-  }
+@media (min-width: 768px) {
+  /* Medium devices (tablets) */
+  font-size: 1.2rem;
+  padding: 0 20px;
 
-  @media (min-width: 1200px) {
-    /* Extra large devices (large desktops) */
-    font-size: 1.6rem; 
-  }
+  
+}
 
+@media (min-width: 992px) {
+  /* Large devices (desktops) */
+  font-size: 1.4rem;
+  padding: 0 120px;
+
+  
+}
+
+@media (min-width: 1200px) {
+  /* Extra large devices (large desktops) */
+  font-size: 1.6rem;
+  padding: 0 120px;
+
+}
 `;
 
 const LogoImage = styled.img`
@@ -2223,6 +2592,7 @@ const NewsLetterSection = styled.section`
   width: 100%;
   background: rgba(17, 17, 17, 1);
   
+  
   border: 1px solid #151518;
 
   h2 {
@@ -2279,6 +2649,7 @@ const NewsLetterSectionColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 
   padding: 0 20px;
 
@@ -2786,6 +3157,7 @@ const PartnerCol1 = styled.div`
     border: 2px solid #424242;
     border-radius: 8px 8px 8px 8px;
     margin-bottom: 20px;
+    display: none;
 
 
   }
@@ -2798,6 +3170,7 @@ const PartnerCol1 = styled.div`
     border: 2px solid #424242;
     border-radius: 8px 8px 8px 8px;
     margin-bottom: 20px;
+    display: none;
 
 
   }
@@ -2812,6 +3185,7 @@ const PartnerCol1 = styled.div`
     border-radius: 0px;
 
     margin-bottom: 0px;
+    display: block;
 
   }
 
@@ -2824,6 +3198,8 @@ const PartnerCol1 = styled.div`
     border: none;
     border-radius: 0px;
     margin-bottom: 0px;
+    display: block;
+
 
     
   }
@@ -2836,6 +3212,8 @@ const PartnerCol1 = styled.div`
     border: none;
     border-radius: 0px;
     margin-bottom: 0px;
+    display: block;
+
 
 
   }
@@ -2852,7 +3230,7 @@ const PartnerCol2 = styled.div`
  
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    width: 100%;
+    width: 80%;
     padding: 20px 12px 12px 12px; /* Add padding to both sides */
     background-color: rgb(66, 66, 66, 0.5);
     border: 2px solid #424242;
@@ -2862,7 +3240,7 @@ const PartnerCol2 = styled.div`
 
   @media (min-width: 576px) {
     /* Small devices (phones) */
-    width: 100%;
+    width: 80%;
     padding: 20px 12px 12px 12px; /* Add padding to both sides */
     background-color: rgb(66, 66, 66, 0.5);
     border: 2px solid #424242;
@@ -2919,6 +3297,8 @@ const PartnerCol3 = styled.div`
     background-color: rgb(66, 66, 66, 0.5);
     border: 2px solid #424242;
     border-radius: 8px 8px 8px 8px;
+    display: none;
+
 
 
   }
@@ -2930,6 +3310,8 @@ const PartnerCol3 = styled.div`
     background-color: rgb(66, 66, 66, 0.5);
     border: 2px solid #424242;
     border-radius: 8px 8px 8px 8px;
+    display: none;
+
 
 
   }
@@ -2942,6 +3324,7 @@ const PartnerCol3 = styled.div`
     background-color: transparent;
     border: none;
     border-radius: 0px;
+    display: block;
 
 
   }
@@ -2954,6 +3337,8 @@ const PartnerCol3 = styled.div`
     background-color: transparent;
     border: none;
     border-radius: 0px;
+    display: block;
+
 
     
   }
@@ -2965,6 +3350,8 @@ const PartnerCol3 = styled.div`
     background-color: transparent;
     border: none;
     border-radius: 0px;
+    display: block;
+
 
   }
 
@@ -2974,15 +3361,17 @@ const PartnerCol3 = styled.div`
 const LearnMoreButton = styled.button`
     padding: 10px 20px;
     background-color: ${props => props.color || '#ffffff'};
+    background-color: #5B5B5B;
     color: ${props => props.fontColor || '#000'};
-    border: 1px solid #27272A; 
-    border-radius: 4px;
+    border: 1px solid #fff; 
+    border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
     transition: all 200ms ease-in-out;
 
     &:hover {
         background-color: lightgray;
+        color: black;
     }
 `;
 
@@ -3523,6 +3912,259 @@ const LanguageSelect = styled.select`
 
 
 
+const MoreInfoSection = styled.section`
+  padding-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-image: linear-gradient(to bottom, rgb(22, 22, 22) 0%, #111111 82%, #09090B 100%);
+  border: 1px solid #151518;
+
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    flex-wrap: wrap;
+  }
+
+    @media (min-width: 576px) {
+    /* Small devices (phones) */
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    flex-wrap: no-wrap;
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    flex-wrap: no-wrap;
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    flex-wrap: no-wrap;
+  }
+`;
+
+const MoreInfoSectionHeading = styled.h2`
+  font-size: 2.5rem; /* Increase font size */
+  margin: 40px 0px 20px 0px;
+  color: #fff;
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    font-size: 1.3rem;
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    font-size: 1.7rem;    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    font-size: 1.8rem;    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    font-size: 2rem;  
+  }
+
+`;
+
+const MoreInfoMainParagraph = styled.p`
+  font-size: 1.6rem; /* Increase font size */
+  text-align: center;
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    font-size: 0.8rem;
+    padding: 0 20px;
+
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    font-size: 1.0rem;
+    padding: 0 20px;
+
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    font-size: 1.2rem;
+    padding: 0 20px;
+
+    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    font-size: 1.4rem;
+    padding: 0 120px;
+
+    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    font-size: 1.6rem;
+    padding: 0 120px;
+
+  }
+
+
+`;
+
+const MoreInfoSectionBoxHeading = styled.h2`
+
+  font-size: 2.5rem; /* Increase font size */
+  margin-bottom: 20px;
+  color: #fff;
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    font-size: 1.3rem;
+  }
+
+  @media (min-width: 576px) {
+    /* Small devices (phones) */
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    font-size: 1.7rem;    
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    font-size: 1.8rem;    
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    font-size: 2rem;  
+  }
+
+`;
+
+
+
+const MoreInfoSectionRow = styled.div`
+  padding-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background: transparent;
+  margin-bottom: 50px;
+
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+    flex-wrap: wrap;
+  }
+
+    @media (min-width: 576px) {
+    /* Small devices (phones) */
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    flex-wrap: no-wrap;
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    flex-wrap: no-wrap;
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    flex-wrap: no-wrap;
+}
+  
+`
+
+const MoreInfoSectionColumn = styled.div`
+  width: 380px; /* Set a fixed width for each column */
+  border: 1px solid #FAF0E6;
+  border-radius: 24px;
+  margin-bottom: 40px;
+  background-color: #292929;
+
+
+
+  @media (min-width: 280px) {
+    /* Extra Small devices (phones) */
+        width: 65%;
+  }
+
+    @media (min-width: 576px) {
+    /* Small devices (phones) */
+        width: 65%;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (tablets) */
+    width: 250px;
+  }
+
+  @media (min-width: 992px) {
+    /* Large devices (desktops) */
+    width: 250px;
+  }
+
+  @media (min-width: 1200px) {
+    /* Extra large devices (large desktops) */
+    width: 300px;
+  }
+`;
+
+
+
+
+
+const MoreInfoSectionImage = styled.img`
+  width: 100%;
+  border-radius: 24px 24px 0px 0px;
+`;
+
+
+const MoreInfoSectionText = styled.div`
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    
+    // background: #000F11;
+    border-top: 1px solid #27272A;
+    padding: 20px;
+    
+`;
+
+
+const MoreInfoSectionParagraph = styled.p`
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-top: 0px;
+  padding-left: 10px;
+  padding-right: 10px; 
+  margin-bottom: 30px;
+  font-size: 0.9em;
+`;
+
 
 
 
@@ -3619,6 +4261,32 @@ const HomeComponent = () => {
   );
 
 
+  useEffect(() => {
+    AOS.init({
+      // Global settings:
+      disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+      startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+      initClassName: 'aos-init', // class applied after initialization
+      animatedClassName: 'aos-animate', // class applied on animation
+      useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+      disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+      debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+      throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+      // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+      offset: 120, // offset (in px) from the original trigger point
+      delay: 0, // values from 0 to 3000, with step 50ms
+      duration: 400, // values from 0 to 3000, with step 50ms
+      easing: 'ease', // default easing for AOS animations
+      once: false, // whether animation should happen only once - while scrolling down
+      mirror: false, // whether elements should animate out while scrolling past them
+      anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+    });
+  }, []);
+
+
   return (
     <>
       <ConnectionProvider endpoint={endpoint}>
@@ -3628,30 +4296,30 @@ const HomeComponent = () => {
 
             </GrayOverlay>
             <Wrapper>
-            <Header>
+              <Header>
                 {isMobile ? (
                   <>
                     <LogoContainer>
                       {isMobile && (
                         <ToggleButton onClick={handleNavToggle}>&#9776;</ToggleButton>
                       )}
-                      <Logo>Logo</Logo>
+                      <Logo>Miura</Logo>
                     </LogoContainer>
                     <NavOverlay visible={isNavVisible}>
                       <NavLinksContainerMobile>
-                        <NavLinkMobile href="#about" onClick={handleNavClose}>
+                        <NavLinkMobile href="/main#about" onClick={handleNavClose}>
                           About
                         </NavLinkMobile>
                         <NavLinkMobile href="/dapp" onClick={handleNavClose}>
                           Claim
                         </NavLinkMobile>
-                        <NavLinkMobile href="#governance" onClick={handleNavClose}>
+                        <NavLinkMobile href="/main#governance" onClick={handleNavClose}>
                           Governance
                         </NavLinkMobile>
-                        <NavLinkMobile href="#roadmap" onClick={handleNavClose}>
+                        <NavLinkMobile href="/main#roadmap" onClick={handleNavClose}>
                           Roadmap
                         </NavLinkMobile>
-                        <NavLinkMobile href="#newsletter" onClick={handleNavClose}>
+                        <NavLinkMobile href="/main#newsletter" onClick={handleNavClose}>
                           Newsletter
                         </NavLinkMobile>
                       </NavLinksContainerMobile>
@@ -3661,11 +4329,11 @@ const HomeComponent = () => {
                   <NavContainer>
                     <Logo>Miura Protocol</Logo>
                     <NavLinksContainer>
-                      <NavLink href="#about">About</NavLink>
+                      <NavLink href="/main#about">About</NavLink>
                       <NavLink href="/dapp">Claim</NavLink>
-                      <NavLink href="#governance">Governance</NavLink>
-                      <NavLink href="#roadmap">Roadmap</NavLink>
-                      <NavLink href="#newsletter">Newsletter</NavLink>
+                      <NavLink href="/main#governance">Governance</NavLink>
+                      <NavLink href="/main#roadmap">Roadmap</NavLink>
+                      <NavLink href="/main#newsletter">Newsletter</NavLink>
                     </NavLinksContainer>
                   </NavContainer>
                 )}
@@ -3690,22 +4358,22 @@ const HomeComponent = () => {
               <Main>
 
                 <HeroSection>
-                  <HeroBoxCol>
+                  <HeroBoxCol data-aos="fade-down-left">
                     <LeftColumn>
                       <HeroHeader>Earn Interest & Borrow Assets Against NFTs, Seamlessly</HeroHeader>
                       <HeroParagraph>Unleash the full potential of your NFT and borrowing against your NFT as collateral.</HeroParagraph>
                       <div>
-                        <WhiteButton><Link href="/dapp">MINT NFT</Link></WhiteButton>
-                        <TransparentButton>JOIN DISCORD</TransparentButton>
+                      <Link href="/dapp"><WhiteButton>MINT NFT</WhiteButton></Link>
+                        <Link href="/nft"><TransparentButton>NFT INFO</TransparentButton></Link>
                       </div>
                     </LeftColumn>
                     <RightColumn>
-                      <Image src="/GIFMAIN.GIF" alt="Your Image" width={1000} height={500} /> {/* Adjust image path and dimensions */}
+                      <Image src="/GIFMAIN.GIF" alt="Your Image" width={900} height={450} /> {/* Adjust image path and dimensions */}
                     </RightColumn>
                   </HeroBoxCol>
                   <HIWBoxCol>
 
-                    <HIWBox>
+                    <HIWBox >
                       <Image src="/plain.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
                       <HIWHeader>
                         How it Works
@@ -3717,7 +4385,7 @@ const HomeComponent = () => {
                     </HIWBox>
 
                     <HeroBoxColThree>
-                      <Col1>
+                      <Col1 data-aos="flip-up">
                         <ColHeading>
                           1. Lend Collateral
                         </ColHeading>
@@ -3725,7 +4393,7 @@ const HomeComponent = () => {
                           Unlock the full potential of your NFT
                         </ColParagraph>
                       </Col1>
-                      <Col2>
+                      <Col2 data-aos="flip-up">
                         <ColHeading>
                           2. Borrow & Bridge
                         </ColHeading>
@@ -3733,7 +4401,7 @@ const HomeComponent = () => {
                           Use any NFT on any chain to borrow assets
                         </ColParagraph>
                       </Col2>
-                      <Col3>
+                      <Col3 data-aos="flip-up">
                         <ColHeading>
                           3. Earn Part of Interest
                         </ColHeading>
@@ -3750,26 +4418,26 @@ const HomeComponent = () => {
 
                 <InfoSection id="about">
                   <InfoBoxCol>
-                    <InfoLeftColumn>
+                    <InfoLeftColumn data-aos="fade-right">
                       <Image src="/lock.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
                       <InfoHeader>
                         What is Miura?
                       </InfoHeader>
                       <InfoParagraph>
-                        Miura is a decentralized non-custotia liquidity market protocol where users can borrow assets based on any NFT on any chain.
+                        Miura is a decentralized non-custodial liquidity market protocol where users can borrow assets based on any NFT on any chain.
                       </InfoParagraph>
                     </InfoLeftColumn>
-                    <InfoRightColumn>
+                    <InfoRightColumn data-aos="fade-left">
                       <Image src="/mimage3.png" alt="Your Image" width={500} height={300} /> {/* Adjust image path and dimensions */}
                     </InfoRightColumn>
                   </InfoBoxCol>
 
                   <InfoBoxCol2>
 
-                    <InfoRightColumn>
+                    <InfoRightColumn data-aos="fade-up-right">
                       <Image src="/mimage4.png" alt="Your Image" width={600} height={300} /> {/* Adjust image path and dimensions */}
                     </InfoRightColumn>
-                    <InfoLeftColumn>
+                    <InfoLeftColumn data-aos="fade-right">
                       <Image src="/wave.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
                       <InfoHeader>
                         How to borrow?
@@ -3787,15 +4455,24 @@ const HomeComponent = () => {
                   <Hexagon1 src="/hex3.png" alt="Your Image"></Hexagon1>
                   <Hexagon3 src="/hex1.png" alt="Your Image"></Hexagon3>
                   <Hexagon2 src="/hex3.png" alt="Your Image"></Hexagon2>
-                  <MarketStatsBox>
+                  <MarketStatsBox data-aos="fade-up"
+                    data-aos-anchor-placement="center-bottom">
                     <Image src="/thunder.png" alt="Your Image" width={50} height={45} /> {/* Adjust image path and dimensions */}
                     <MarketStatsHeader>
-                      Industry Leading Rewards
+                      Miura Token
                     </MarketStatsHeader>
                     <MarketStatsParagraph>
-                      Utilize USDT, USDC, Dai, Sol, Matic, ETH, and BNB for trading by borrowing and earn rewards.
+                      MIURA is used as the center of gravity for MIURA PROTOCOL governance. MIURA is employed to vote and decide on the outcome of MIURA improvement proposals. Apart from this, MIURA can be staked within the protocol to provide security/insurance to the protocol suppliers. Stakers earn staking rewards and fees from the protocol.
                     </MarketStatsParagraph>
-                    <Image src="/mimage6.png" alt="Your Image" width={700} height={460} /> {/* Adjust image path and dimensions */}
+                    <TotalCirculationWidget data-aos="flip-right" data-aos-duration="600">
+                      <CirlceFrameImg src="/coins.png" alt="Your Image"></CirlceFrameImg>
+                      <SupplyBox>
+                        <SupplyHeading>Total Supply</SupplyHeading>
+                        <SupplyText>Miura has a total supply of 5,000,000,000 tokens.</SupplyText>
+                      </SupplyBox>
+
+                    </TotalCirculationWidget>
+
 
                   </MarketStatsBox>
                 </MarketStatsSection>
@@ -3804,7 +4481,7 @@ const HomeComponent = () => {
 
 
                 <SliderSection id="governance">
-                  <SliderBox>
+                  <SliderBox data-aos="fade-up">
                     <Image src="/plain.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
                     <SliderHeader>
                       Token Allocation
@@ -3818,38 +4495,87 @@ const HomeComponent = () => {
 
                 </SliderSection>
 
-                <CarouselSection id="roadmap">
-                  <Image src="/plain.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
+                <MoreInfoSection id="eventSection" >
+                <Image src="/plain.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
+                  <MoreInfoSectionHeading>Loans & Interest</MoreInfoSectionHeading>
+                  <MoreInfoMainParagraph>
+                      Our token allocation strategy aims to maximize future gains and project success.
+                    </MoreInfoMainParagraph>
+                  <MoreInfoSectionRow>
+                    <MoreInfoSectionColumn data-aos="flip-left">
+                      <MoreInfoSectionImage src="/loan.png" alt="Image 1" />
+                      <MoreInfoSectionText>
+                        <MoreInfoSectionBoxHeading>Loan Repayment</MoreInfoSectionBoxHeading>
+                        <MoreInfoSectionParagraph>
+                          Understand your options for settling borrowed amounts.
+                        </MoreInfoSectionParagraph>
+                        <Link href="/loan#loanPage">
+                          <LearnMoreButton color="#292929" fontColor="#fff">Learn More</LearnMoreButton>
+                        </Link>
+                      </MoreInfoSectionText>
+                    </MoreInfoSectionColumn>
 
-                  <CarouselHeader>
+                    <MoreInfoSectionColumn data-aos="flip-down">
+                      <MoreInfoSectionImage src="/info.png" alt="Image 2" />
+                      <MoreInfoSectionText>
+                        <MoreInfoSectionBoxHeading>Interest Payment</MoreInfoSectionBoxHeading>
+                        <MoreInfoSectionParagraph>
+                        Details on how interest is calculated and paid.
+                        </MoreInfoSectionParagraph>
+                        <Link href="/loan#loanterms">
+                          <LearnMoreButton color="#292929" fontColor="#fff">Learn More</LearnMoreButton>
+                        </Link>
+                      </MoreInfoSectionText>
+                    </MoreInfoSectionColumn>
+
+                    <MoreInfoSectionColumn data-aos="flip-right">
+                      <MoreInfoSectionImage src="/distribution.png" alt="Image 3" />
+                      <MoreInfoSectionText>
+                        <MoreInfoSectionBoxHeading>Interest Distribution</MoreInfoSectionBoxHeading>
+                        <MoreInfoSectionParagraph>
+                        Insight into how interest fees are allocated and used.
+                        </MoreInfoSectionParagraph>
+                        <Link href="/loan#loanPage">
+                          <LearnMoreButton color="#292929" fontColor="#fff">Learn More</LearnMoreButton>
+                        </Link>
+
+                      </MoreInfoSectionText>
+                    </MoreInfoSectionColumn>
+                  </MoreInfoSectionRow>
+                </MoreInfoSection>
+
+                <CarouselSection id="roadmap">
+                  <Image data-aos="flip-left" src="/plain.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
+
+                  <CarouselHeader data-aos="zoom-in">
                     Project Roadmap
                   </CarouselHeader>
-                  <CarouselParagraph>
-                  The Miura roadmap is concise and offers insights into the project&apos;s objectives.
-                    </CarouselParagraph>
+                  <CarouselParagraph data-aos="flip-down">
+                    The Miura roadmap is concise and offers insights into the project&apos;s objectives.
+                  </CarouselParagraph>
                   <Carousel slides={CAROUSEL_SLIDES} options={CAROUSEL_OPTIONS} />
                 </CarouselSection>
 
                 <InfoSection>
                   <InfoBoxCol2>
 
-                    <InfoRightColumn>
+                    <InfoRightColumn data-aos="flip-right">
                       <Image src="/hexgroup7.png" alt="myimag" width={700} height={700} /> {/* Adjust image path and dimensions */}
                     </InfoRightColumn>
-                    <InfoLeftColumn>
+                    <InfoLeftColumn data-aos="zoom-in">
                       <Image src="/lock.png" alt="Your Image" width={45} height={40} /> {/* Adjust image path and dimensions */}
                       <InfoHeader>
                         Security & Audits
                       </InfoHeader>
                       <InfoParagraph>
-                      Miura has been implemented with security as priority. The system has been designed to be safe and secure, and we have spent all the necessary resources in the order to ensure that the protocol matches the higherest security standards.
+                        Miura has been implemented with security as priority. The system has been designed to be safe and secure, and we have spent all the necessary resources in the order to ensure that the protocol matches the higherest security standards.
                       </InfoParagraph>
                     </InfoLeftColumn>
                   </InfoBoxCol2>
                 </InfoSection>
                 <NewsLetterSection id="newsletter">
 
-                  <NewsLetterBox>
+                  <NewsLetterBox data-aos="flip-down" data-aos-duration="2000">
                     <DottedSquare1 src="/dots.png" alt="Your Image"></DottedSquare1>
                     <DottedSquare2 src="/dots.png" alt="Your Image"></DottedSquare2>
                     <NewsLetterSectionColBox>
@@ -3893,13 +4619,13 @@ const HomeComponent = () => {
                   <PartnersHeading>Our ecosystem:</PartnersHeading>
                   <PartnersBox>
                     <PartnerCol1>
-                      <Image src="/partner1.png" alt="Phantom Logo" width={200} height={50} /> {/* Adjust image path and dimensions */}
+                      {/* <Image src="/partner1.png" alt="Phantom Logo" width={200} height={50} />  */}
                     </PartnerCol1>
                     <PartnerCol2>
-                      <Image src="/partner2.png" alt="Solana Logo" width={200} height={50} /> {/* Adjust image path and dimensions */}
+                      <Image src="/partner2.png" alt="Solana Logo" width={200} height={50} />
                     </PartnerCol2>
                     <PartnerCol3>
-                      <Image src="/partner3.png" alt="Metaplex Logo" width={200} height={50} /> {/* Adjust image path and dimensions */}
+                      {/* <Image src="/partner3.png" alt="Metaplex Logo" width={200} height={50} />  */}
                     </PartnerCol3>
 
                   </PartnersBox>

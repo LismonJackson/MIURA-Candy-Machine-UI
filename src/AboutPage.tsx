@@ -3,10 +3,32 @@ import styled from "styled-components";
 import ParticleCanvas from "./ParticleAnimation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import Link from 'next/link';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useMemo } from "react";
 import { db } from './firebase'; // Adjust the path as needed
-import Head from "next/head";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import {
+  BackpackWalletAdapter,
+  GlowWalletAdapter,
+  LedgerWalletAdapter,
+  PhantomWalletAdapter,
+  SafePalWalletAdapter,
+  SolflareWalletAdapter,
+  SolletExtensionWalletAdapter,
+  SolletWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { rpcHost, candyMachineId, network } from "./config";
+
+
+
 
 const Wrapper = styled.div`
   font-family: Arial, sans-serif;
@@ -20,11 +42,36 @@ const Header = styled.header`
     margin: 0 auto;
     background-color: #09090B;
     color: #fff;
-    padding: 20px 20px 20px 20px;
+    padding: 0px 20px 0px 20px;
     text-align: center;
     // background: #212121;
     background: #09090B;
     border-bottom: 2px solid #151518;
+
+    @media (min-width: 280px) {
+      /* Extra Small devices (phones) */
+      padding: 0px 5px 0px 5px;
+    }
+  
+      @media (min-width: 576px) {
+      /* Small devices (phones) */
+      padding: 0px 5px 0px 5px;
+    }
+  
+    @media (min-width: 768px) {
+      /* Medium devices (tablets) */
+      padding: 0px 10px 0px 10px;
+    }
+  
+    @media (min-width: 992px) {
+      /* Large devices (desktops) */
+      padding: 0px 20px 0px 20px;
+    }
+  
+    @media (min-width: 1200px) {
+      /* Extra large devices (large desktops) */
+      padding: 0px 20px 0px 20px;
+    }
 
 `;
 
@@ -64,7 +111,7 @@ const LogoImage = styled.img`
   
   @media (min-width: 280px) {
     /* Extra Small devices (phones) */
-    max-width: 60%;
+    max-width: 70%;
   }
 
     @media (min-width: 576px) {
@@ -84,7 +131,7 @@ const LogoImage = styled.img`
 
   @media (min-width: 1200px) {
     /* Extra large devices (large desktops) */
-    max-width: 30%;
+    max-width: 50%;
   }
 
 `;
@@ -512,6 +559,115 @@ const AccordionHeader = styled.div`
   align-items: center;
 `;
 
+const NavButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  button {
+
+    @media (min-width: 280px) {
+      /* Extra Small devices (phones) */
+      margin-right: 0px;
+
+    }
+  
+    @media (min-width: 576px) {
+      /* Small devices (phones) */
+      margin-right: 2px;
+
+    }
+  
+    @media (min-width: 768px) {
+      /* Medium devices (tablets) */
+      margin-right: 5px;
+
+      
+    }
+  
+    @media (min-width: 992px) {
+      /* Large devices (desktops) */
+      margin-right: 20px;
+
+  
+      
+    }
+  
+    @media (min-width: 1200px) {
+      /* Extra large devices (large desktops) */
+      margin-right: 20px;
+
+    }
+
+
+  }
+
+
+`;
+
+
+const WalletContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: right;
+  align-items: center; // Keeps items vertically aligned
+  margin: 30px;
+  z-index: 999;
+  position: relative;
+
+  .wallet-adapter-dropdown-list {
+    background: #ffffff;
+    max-width: 100%; // Ensure it does not overflow the container
+  }
+  .wallet-adapter-dropdown-list-item {
+    background: #000000;
+  }
+  .wallet-adapter-dropdown-list {
+    grid-row-gap: 5px;
+  }
+`;
+
+const Wallet = styled.ul`
+  flex: 1 1 auto; // Allows the Wallet to grow and shrink
+  margin: 0;
+  padding: 0;
+  list-style-type: none; // No list marker
+  
+`;
+
+const WalletAmount = styled.div`
+  color: #111111;
+  min-width: 48px;
+  height: 30px; // Fixed height to avoid height changes
+  border-radius: 5px;
+  background-color: #D3D3D3;
+  box-sizing: border-box;
+  transition: background-color 250ms, box-shadow 250ms, border 250ms;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap; // Prevents text wrapping
+  padding: 20px 10px; // Maintaining padding to keep it visually pleasing
+
+`;
+
+
+const ConnectButton = styled(WalletMultiButton)`
+  line-height: 14px;
+  border-radius: 5px !important;
+  background-color: #fff;
+  color: #000;
+  margin-right: 0px !important;
+  font-size: 1em;
+  padding: 6px 16px;
+  white-space: nowrap; // Prevents text wrapping
+  height: 30px; // Fixed height to match WalletAmount
+`;
+
+
 const AccordionContent = styled.div`
   background-color: #09090B;
   color: #fff;
@@ -619,6 +775,9 @@ const Footer = styled.footer`
 `;
 
 const AboutComponent = () => {
+  const { connection } = useConnection();
+  const wallet = useWallet();
+  const [balance, setBalance] = useState<number>();
 
   const [input, setInput] = useState("");
   const [message, setMessage] = useState("");
@@ -653,53 +812,98 @@ const AboutComponent = () => {
     }
   };
 
+
+  useEffect(() => {
+    (async () => {
+      if (wallet?.publicKey) {
+        const balance = await connection.getBalance(wallet.publicKey);
+        setBalance(balance / LAMPORTS_PER_SOL);
+      }
+    })();
+  }, [wallet, connection]);
+
   useEffect(() => {
     document.title = "Miura Protocol - Home";
   }, []);
 
+  const endpoint = useMemo(() => rpcHost, []);
+
+  const wallets = useMemo(
+    () => [
+      new BackpackWalletAdapter(),
+      new GlowWalletAdapter(),
+      new LedgerWalletAdapter(),
+      new PhantomWalletAdapter(),
+      new SafePalWalletAdapter(),
+      new SolflareWalletAdapter({ network }),
+      new SolletExtensionWalletAdapter(),
+      new SolletWalletAdapter(),
+    ],
+    []
+  );
+
   return (
     <>
+      <ConnectionProvider endpoint={endpoint}>
+        
+        <WalletProvider wallets={wallets} autoConnect={true}>
+          <WalletModalProvider>
 
-      <Wrapper>
-        <Header>
-          <h1>Miura<BetaTag>Beta</BetaTag></h1>
-          <Link href="/dapp">
-            <NavButton>Launch Dapp</NavButton>
-          </Link>
-        </Header>
 
-        <Main>
-          <HeroSection>
+            <Wrapper>
+              <Header>
+                <h1>Miura<BetaTag>Beta</BetaTag></h1>
+                {/* <Link href="/dapp">
+                <NavButton>
+                  Home </NavButton>
+              </Link> */}
+                <NavButtonContainer>
+                  <WalletContainer>
+                    <Wallet>
+                      {wallet ? (
+                        <WalletAmount>
+                          {(balance || 0).toLocaleString()} SOL
+                          <ConnectButton />
+                        </WalletAmount>
+                      ) : (
+                        <ConnectButton>Connect Wallet</ConnectButton>
+                      )}
+                    </Wallet>
+                  </WalletContainer>
+                </NavButtonContainer>
+              </Header>
 
-            <div>
-              {/* Image can also be used instead of Particle Animation */}
-              {/* <HeroImage
+              <Main>
+                <HeroSection>
+
+                  <div>
+                    {/* Image can also be used instead of Particle Animation */}
+                    {/* <HeroImage
                             src="https://nftstorage.link/ipfs/bafybeibnie63fmcgor2gptiowailq5sgbv6hkmwxeahfhhy4evadbhlhji/0.jpg"
                             alt="Team Image"
                         /> */}
-              <ParticleCanvas backgroundColor="#010101" animate={true} />
-              <Overlay />
-            </div>
-            <HeroText>
+                    <ParticleCanvas backgroundColor="#010101" animate={true} />
+                    <Overlay />
+                  </div>
+                  <HeroText>
 
-              <LogoImage
-                src="https://nftstorage.link/ipfs/bafybeigpp7tctarhny5v6h4t3g67v5ch4o5hguaypvyp6rffdhoh46qn3i/10.png"
-                alt="Team Image"
-              />
-              <h2>Miura Protocol</h2>
-              <p>
-                Miura is a cutting-edge platform built on Solana blockchain,
-                revolutionizing the way you experience DeFi. Our mission is to
-                provide seamless, secure, and decentralized financial solutions
-                for everyone.
-              </p>
-              <Link href="/dapp">
-                <HeroButton>Claim Now!</HeroButton>
-              </Link>
-            </HeroText>
-          </HeroSection>
+                    <LogoImage
+                      src="/miuragif.gif"
+                      alt="Team Image"
+                    />
+                    <h2>Miura NFT</h2>
+                    <p>
+                      A MIURA NFT is a digital asset that grants its owner the right to receive part of the interest charged on borrowed funds and can be used as collateral for borrowing funds.
 
-          <NewsSection id="eventSection">
+
+                    </p>
+                    <Link href="/dapp">
+                      <HeroButton>Claim Now!</HeroButton>
+                    </Link>
+                  </HeroText>
+                </HeroSection>
+
+                {/* <NewsSection id="eventSection">
 
             <h2>Upcoming Events</h2>
             <Row>
@@ -741,57 +945,61 @@ const AboutComponent = () => {
                 </Text>
               </Column>
             </Row>
-          </NewsSection>
-          <FaqsSection>
+          </NewsSection> */}
+                <FaqsSection>
 
-            <h2>FAQs</h2>
-            <AccordionWrapper>
-              <Accordion
-                title="What is the significance of purchasing this NFT?"
-                content="Purchasing this NFT holds significance as it grants participation in the AIRDROP event linked to the pioneering lending and borrowing protocol designed specifically for NFT assets. This implies that by acquiring this NFT, you become eligible for benefits and rewards within the framework of this unique financial ecosystem."
-              />
-              <Accordion
-                title="What benefit do NFT owners receive?"
-                content="NFT owners stand to gain a distinct advantage as they receive a portion of the interest accrued from loans taken against NFT assets. This means that by being a holder of this NFT, you become entitled to a share of the interest earnings generated from funds borrowed by others against their NFT holdings."
-              />
-              <Accordion
-                title="How can MIURA NFT be utilized on the platform?"
-                content="MIURA NFT serves as a versatile asset within the platform's ecosystem, primarily functioning as collateral for borrowing funds. This means that holders of MIURA NFTs can leverage their ownership to obtain loans, utilizing their NFTs as security against the borrowed funds, thereby unlocking liquidity without having to sell their NFT holdings."
-              />
-              <Accordion
-                title="How can this NFT be used for non-payment of interest?"
-                content="This NFT offers a unique utility wherein it can be utilized to offset interest payments under specific circumstances. If you choose to pledge your NFT as collateral and borrow funds against another NFT asset, you have the option to use this NFT to waive the interest payments on the borrowed funds. This feature provides flexibility and additional value to the ownership of this NFT, allowing strategic financial management within the platform's ecosystem."
-              />
-            </AccordionWrapper>
+                  <h2>FAQs</h2>
+                  <AccordionWrapper>
+                    <Accordion
+                      title="What is MIURA NFT?"
+                      content="MIURA NFT represents a single condition for the AIRDROP of the MIURA token."
+                    />
+                    <Accordion
+                      title="What benefits do owners of MIURA NFT receive?"
+                      content="Owners of MIURA NFT will receive part of the interest that will be charged for borrowing funds."
+                    />
+                    <Accordion
+                      title="Can MIURA NFT be used like other NFTs for borrowing funds?"
+                      content="MIURA NFT will be able to be used like any other NFT for borrowing funds."
+                    />
+                    <Accordion
+                      title="How can MIURA NFT help with interest payments on borrowed funds?"
+                      content="MIURA NFT will be able to be used for non-payment of interest on borrowed funds on the basis of another NFT."
+                    />
+                  </AccordionWrapper>
 
-          </FaqsSection>
+                </FaqsSection>
 
 
-          <NewsLetterSection>
-            <NewsLetterBox>
-              <Heading>Newsletter</Heading>
-              <p>
-                Stay updated with our latest news and developments by subscribing
-                to our newsletter.
-              </p>
-              <NewsletterForm onSubmit={submitHandler}>
-                <EmailInput
-                  type="email"
-                  onChange={inputHandler}
-                  name="email"
-                  placeholder="Your email"
-                  value={input}
-                  required
-                />
-                <SubscribeButton type="submit">Subscribe</SubscribeButton>
-              </NewsletterForm>
-              <Alert>{message}</Alert>
-            </NewsLetterBox>
-          </NewsLetterSection>
-        </Main>
+                <NewsLetterSection>
+                  <NewsLetterBox>
+                    <Heading>Newsletter</Heading>
+                    <p>
+                      Stay updated with our latest news and developments by subscribing
+                      to our newsletter.
+                    </p>
+                    <NewsletterForm onSubmit={submitHandler}>
+                      <EmailInput
+                        type="email"
+                        onChange={inputHandler}
+                        name="email"
+                        placeholder="Your email"
+                        value={input}
+                        required
+                      />
+                      <SubscribeButton type="submit">Subscribe</SubscribeButton>
+                    </NewsletterForm>
+                    <Alert>{message}</Alert>
+                  </NewsLetterBox>
+                </NewsLetterSection>
+              </Main>
 
-        <Footer>&copy; 2024 Miura. All rights reserved.</Footer>
-      </Wrapper>
+              <Footer>&copy; 2024 Miura. All rights reserved.</Footer>
+            </Wrapper>
+
+          </WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
     </>
   );
 };
